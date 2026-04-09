@@ -416,8 +416,8 @@ if(vid){
       document.getElementById("feeBody").innerHTML=html;
     }
     
-    app.innerHTML=\`<div class="fee-view"><div class="fee-card">
-      <div class="top"><h2>\${c.n}</h2><div class="info">\${infoHtml}</div></div>
+    app.innerHTML=`<div class="fee-view"><div class="fee-card">
+      <div class="top"><h2>${c.n}</h2><div class="info">${infoHtml}</div></div>
       <div class="lt-toggle">
         <label>Landing Type:</label>
         <select id="ltSel" onchange="render(this.value)">
@@ -427,8 +427,8 @@ if(vid){
       </div>
       <div id="feeBody"></div>
       <div class="fee-total" id="feeTotal"></div>
-      <div class="fee-note">Fees calculated dynamically as on \${FD(today)}. Penalty accrues monthly.<br>Change landing type above if applicable.</div>
-    </div></div>\`;
+      <div class="fee-note">Fees calculated dynamically as on ${FD(today)}. Penalty accrues monthly.<br>Change landing type above if applicable.</div>
+    </div></div>`;
     window.render=render;
     render("5");
   }
@@ -445,18 +445,18 @@ if(vid){
     sl.forEach(c=>{
       let m=calcMulti(c,td,"5");
       let regs=c.s.length>1?c.s.map(s=>(s.b||'')+'-'+s.r).join(', '):c.s[0].r;
-      gh+=\`<div class="c-card" onclick="location.href='?id=\${c.i}'">
-        <h3>\${c.i}. \${c.n}</h3>
-        <div class="meta">Reg: \${regs.substring(0,60)}\${regs.length>60?'...':''} | Lifts: \${c.l}</div>
-        <div>As on \${FD(td)}: <span class="total">\${F(m.grand)}</span></div>
-      </div>\`;
+      gh+=`<div class="c-card" onclick="location.href='?id=${c.i}'">
+        <h3>${c.i}. ${c.n}</h3>
+        <div class="meta">Reg: ${regs.substring(0,60)}${regs.length>60?'...':''} | Lifts: ${c.l}</div>
+        <div>As on ${FD(td)}: <span class="total">${F(m.grand)}</span></div>
+      </div>`;
     });
     document.getElementById("grid").innerHTML=gh;
-    let ph='';for(let i=0;i<pages;i++)ph+=\`<button class="\${i===pg?'act':''}" onclick="gp(\${i})">\${i+1}</button>\`;
+    let ph='';for(let i=0;i<pages;i++)ph+=`<button class="${i===pg?'act':''}" onclick="gp(${i})">${i+1}</button>`;
     document.getElementById("pgr").innerHTML=ph;
   }
   window.gp=function(p){pg=p;ren();scrollTo(0,180)};
-  app.innerHTML=\`<div class="ctrls"><input type="text" id="srch" placeholder="Search name, reg no, or serial..."><button onclick="window.print()">Print</button></div><div class="pager" id="pgr"></div><div class="grid" id="grid"></div>\`;
+  app.innerHTML=`<div class="ctrls"><input type="text" id="srch" placeholder="Search name, reg no, or serial..."><button onclick="window.print()">Print</button></div><div class="pager" id="pgr"></div><div class="grid" id="grid"></div>`;
   document.getElementById("srch").addEventListener("input",e=>{flt=e.target.value;pg=0;ren()});
   ren();
 }
