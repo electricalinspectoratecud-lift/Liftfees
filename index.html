@@ -12,54 +12,54 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
 header{background:var(--pri);color:#fff;padding:18px 20px;text-align:center}
 header h1{font-size:1.15rem;font-weight:700}
 header p{font-size:0.78rem;opacity:0.8;margin-top:2px}
-.fee-view{max-width:600px;margin:20px auto;padding:0 12px}
-.fee-card{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden}
-.fee-card .top{background:var(--pri);color:#fff;padding:16px 18px}
-.fee-card .top h2{font-size:1rem;font-weight:600}
-.fee-card .top .info{opacity:0.8;font-size:0.82rem;margin-top:4px;line-height:1.6}
-.lt-toggle{padding:12px 18px;background:#eef2f7;display:flex;align-items:center;gap:10px;font-size:0.88rem;flex-wrap:wrap}
-.lt-toggle label{font-weight:600;color:var(--pri)}
-.lt-toggle select{padding:6px 10px;border-radius:6px;border:1px solid var(--bdr);font-family:inherit;font-size:0.88rem}
-.fee-rows{padding:14px 18px}
-.fee-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:0.88rem}
-.fee-row:last-child{border-bottom:none}
-.fee-row .lb{color:var(--mut);max-width:55%}
-.fee-row .vl{font-weight:600;text-align:right}
-.fee-total{background:var(--hl);padding:14px 18px;display:flex;justify-content:space-between;font-size:1.05rem;font-weight:700;flex-wrap:wrap;gap:4px}
-.fee-total .am{color:var(--acc)}
-.fee-note{padding:10px 18px;font-size:0.75rem;color:var(--mut);text-align:center;border-top:1px solid #eee}
-.sub-table{padding:8px 18px;background:#f9f7f4}
-.sub-table table{width:100%;font-size:0.8rem;border-collapse:collapse}
-.sub-table th{text-align:left;color:var(--pri);padding:4px 6px;border-bottom:2px solid var(--bdr);font-weight:600}
-.sub-table td{padding:4px 6px;border-bottom:1px solid #eee}
-.sub-table td.r{text-align:right;font-weight:600}
-/* List view */
+.fv{max-width:620px;margin:20px auto;padding:0 12px}
+.fc{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden}
+.fc .tp{background:var(--pri);color:#fff;padding:16px 18px}
+.fc .tp h2{font-size:1rem;font-weight:600}
+.fc .tp .inf{opacity:0.8;font-size:0.82rem;margin-top:4px;line-height:1.6}
+.opts{padding:12px 18px;background:#eef2f7;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:0.88rem}
+.opts label{font-weight:600;color:var(--pri);white-space:nowrap}
+.opts select,.opts input[type=date]{padding:6px 10px;border-radius:6px;border:1px solid var(--bdr);font-family:inherit;font-size:0.88rem}
+.fr{padding:14px 18px}
+.r{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:0.88rem}
+.r:last-child{border-bottom:none}
+.r .lb{color:var(--mut);max-width:60%}
+.r .vl{font-weight:600;text-align:right}
+.sh{background:#f0ece6;padding:10px 18px;font-weight:700;font-size:0.85rem;color:var(--pri);border-top:2px solid var(--bdr)}
+.gt{background:var(--hl);padding:14px 18px;display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700}
+.gt .am{color:var(--acc)}
+.nt{padding:10px 18px;font-size:0.75rem;color:var(--mut);text-align:center;border-top:1px solid #eee}
+.st{padding:8px 18px;background:#f9f7f4}
+.st table{width:100%;font-size:0.8rem;border-collapse:collapse}
+.st th{text-align:left;color:var(--pri);padding:4px 6px;border-bottom:2px solid var(--bdr);font-weight:600}
+.st td{padding:4px 6px;border-bottom:1px solid #eee}
+.st td.ar{text-align:right;font-weight:600}
 .ctrls{max-width:920px;margin:14px auto;padding:0 12px;display:flex;gap:8px;flex-wrap:wrap}
-.ctrls input{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;font-size:0.88rem;font-family:inherit}
+.ctrls input[type=text]{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;font-size:0.88rem;font-family:inherit}
 .ctrls button{padding:9px 16px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-family:inherit;font-weight:600;cursor:pointer;font-size:0.85rem}
 .grid{max-width:920px;margin:14px auto;padding:0 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.c-card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:box-shadow .2s}
-.c-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-.c-card h3{font-size:0.78rem;font-weight:600;color:var(--pri);min-height:2.2em}
-.c-card .meta{font-size:0.72rem;color:var(--mut);margin:3px 0 6px}
-.c-card .total{font-weight:700;color:var(--acc);font-size:0.95rem}
-.pager{max-width:920px;margin:8px auto;padding:0 12px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
-.pager button{padding:5px 10px;border:1px solid var(--bdr);border-radius:6px;background:#fff;cursor:pointer;font-family:inherit;font-size:0.8rem}
-.pager button.act{background:var(--pri);color:#fff;border-color:var(--pri)}
+.cc{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:box-shadow .2s}
+.cc:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+.cc h3{font-size:0.78rem;font-weight:600;color:var(--pri);min-height:2.2em}
+.cc .meta{font-size:0.72rem;color:var(--mut);margin:3px 0 6px}
+.cc .total{font-weight:700;color:var(--acc);font-size:0.95rem}
+.pgr{max-width:920px;margin:8px auto;padding:0 12px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.pgr button{padding:5px 10px;border:1px solid var(--bdr);border-radius:6px;background:#fff;cursor:pointer;font-family:inherit;font-size:0.8rem}
+.pgr button.act{background:var(--pri);color:#fff;border-color:var(--pri)}
 .dept{background:var(--pri);color:#fff;padding:8px 18px;font-size:0.7rem;text-align:center;opacity:0.7;margin-top:20px}
-@media print{.ctrls,.pager{display:none}.grid{gap:8px}.c-card{page-break-inside:avoid;border:1px solid #999}}
+@media print{.ctrls,.pgr{display:none}.grid{gap:8px}.cc{page-break-inside:avoid;border:1px solid #999}}
 </style>
 </head>
 <body>
 <header>
-<h1>Electrical Inspectorate — Lift License Renewal Fees</h1>
+<h1>Electrical Inspectorate &#8212; Lift License Renewal Fees</h1>
 <p>Cuddalore Division, Tamil Nadu</p>
 </header>
 <div id="app"></div>
 <div class="dept">Office of the Electrical Inspector, Cuddalore Division</div>
-
 <script>
-const D=[
+// ===== CONSUMER DATA =====
+var D=[
 {i:1,n:'Annamalai University Annamalai Nagar, Chidambaram',l:5,s:[{r:'16/2001-02',e:'2007-06-13'}]},
 {i:2,n:'Registrar  Annamalai University, Annamalai Nagar, Chidambaram',l:5,s:[{r:'18/2001-02',e:'2007-11-26'}]},
 {i:3,n:'Tmt.Vimala, Sugam Appartments Vimala Garden, East Car St,Annamalai Nagar, Chidam',l:1,s:[{r:'1/2007-18',e:'2008-07-08'}]},
@@ -342,122 +342,278 @@ const D=[
 {i:280,n:'Principal Subordinate Judge,Principal Subordinate Judge Court Building, Mayiladu',l:1,s:[{r:'124/2015-16',e:'2027-03-28'}]}
 ];
 
-const K=new Date(2018,9,10);
-function MB(a,b){let m=(b.getFullYear()-a.getFullYear())*12+b.getMonth()-a.getMonth();if(b.getDate()>a.getDate())m++;return Math.max(0,m)}
-function YC(a,b){return Math.max(0,Math.ceil((b-a)/31557600000))}
-function SM(dt,n){let m=dt.getMonth()+1-n,y=dt.getFullYear();while(m<=0){m+=12;y--}let d=Math.min(dt.getDate(),new Date(y,m,0).getDate());return new Date(y,m-1,d)}
-
-function calcOne(exp_s,cd,lt){
-  let exp=new Date(exp_s),due=SM(exp,3),rate=lt==="5+"?10000:5000;
-  let pR=0,pP=0,oR=0,oP=0;
-  if(exp<K){let pe=new Date(Math.min(K,cd));pR=YC(exp,pe)*500;pP=MB(due,pe)*50}
-  if(cd>K){let ps=exp<K?K:exp;oR=Math.ceil(YC(ps,cd)/3)*rate;oP=MB(exp<K?K:due,cd)*500}
-  return{tR:pR+oR,tP:pP+oP,pl:pR+oR+pP+oP}
+// ===== EXCEL YEARFRAC (Basis 0: US 30/360) =====
+function YF(d1,d2){
+  var y1=d1.getFullYear(),m1=d1.getMonth()+1,dd1=Math.min(d1.getDate(),30);
+  var y2=d2.getFullYear(),m2=d2.getMonth()+1,dd2=d2.getDate();
+  if(dd1===30&&dd2===31)dd2=30;
+  if(dd1===31)dd1=30;
+  return((y2-y1)*360+(m2-m1)*30+(dd2-dd1))/360;
 }
 
-function calcAll(c,cd,lt){
-  let tR=0,tP=0;
-  c.s.forEach(s=>{let f=calcOne(s.e,cd,lt);tR+=f.tR;tP+=f.tP});
-  return{tR,tP,pl:tR+tP,g:(tR+tP)*((c.s.length>1)?1:c.l),lifts:c.l,
-    perLift:Math.round((tR+tP)/(c.l||1))}
+// Round up to next multiple of 3
+function C3(n){return Math.ceil(n/3)*3}
+
+// EDATE equivalent
+function EM(d,n){
+  var r=new Date(d);r.setMonth(r.getMonth()+n);
+  return r;
 }
 
-// For multi-lift: each sub-lift fees * 1 lift, grand = sum of all
-function calcMulti(c,cd,lt){
-  let tR=0,tP=0,subs=[];
-  c.s.forEach(s=>{
-    let f=calcOne(s.e,cd,lt);
-    subs.push({...s,tR:f.tR,tP:f.tP,pl:f.pl});
-    tR+=f.tR;tP+=f.tP
-  });
-  return{tR,tP,grand:tR+tP,subs}
+// ===== MAIN CALCULATION (matches Excel formula chain exactly) =====
+function calc(expiry_s, calcDate, landing){
+  var E10=new Date(expiry_s); // Date of Expiry
+  var E12=new Date(calcDate);  // Fees Calculation Date
+  var E9=new Date(calcDate);   // Today/Calc date
+  var B10=new Date(2018,9,9);  // 09-Oct-2018 cutoff
+  var A4=new Date(2018,9,10);  // 10-Oct-2018
+  var rate=(landing==="5+")?10000:5000;
+
+  // E11 = Due date (3 months before expiry)
+  var E11=EM(E10,-3);
+
+  // E13: Pre-Oct'18 required?
+  var preReq=(E11<=B10);
+
+  var E17=0,E18=0,E19=0,E20=0,E21=0;
+  var E16,B19_d,A17_d;
+
+  if(preReq){
+    // L11 = DAY(expiry)-Oct-2018
+    var L11=new Date(2018,9,E10.getDate()); // Oct has index 9
+
+    // E16: penalty end date
+    var dayE15=9; // DAY(B10)=9
+    var dayE11=E11.getDate();
+    if(dayE15>=dayE11){
+      E16=EM(L11,1); // next month
+    } else {
+      E16=new Date(L11.getTime()-86400000); // L11 - 1 day
+    }
+
+    // Check if E15>E12 (cutoff > calc date - unlikely but handle)
+    if(B10>E12){E16=new Date(E12)}
+
+    // E17 = months from due to penalty end
+    E17=Math.ceil(YF(E11,E16)*12);
+    if(E17<0)E17=0;
+
+    // E18 = years from expiry to penalty end
+    E18=Math.ceil(YF(E10,E16));
+    if(E18<0)E18=0;
+
+    E19=E18*500;  // Pre renewal
+    E20=E17*50;   // Pre penalty
+    E21=E19+E20;  // Pre subtotal
+
+    // Transition dates
+    // A12 = "DAY(exp)-MONTH(exp)-YEAR(E16)"
+    var yr16=E16.getFullYear();
+    var A13_d=new Date(yr16,E10.getMonth(),E10.getDate());
+    // C3 = A13 <= A4 ? 1 : 0
+    var addYr=(A13_d<=A4)?1:0;
+    // A14 = DATE(YEAR(A13)+addYr, MONTH(A13), DAY(A13)-1)
+    var A14_d=new Date(A13_d.getFullYear()+addYr,A13_d.getMonth(),A13_d.getDate()-1);
+    // A17 = A14 + 1 day
+    A17_d=new Date(A14_d.getTime()+86400000);
+    // B19 = E16 + 1
+    B19_d=new Date(E16.getTime()+86400000);
+  } else {
+    E21=0;
+    // Not Required path
+    // A17 = expiry (projected)
+    var A13nr=new Date(E10.getFullYear(),E10.getMonth(),E10.getDate());
+    var addYrNr=(A13nr<=A4)?1:0;
+    var A14nr=new Date(A13nr.getFullYear()+addYrNr,A13nr.getMonth(),A13nr.getDate()-1);
+    A17_d=new Date(A14nr.getTime()+86400000);
+    // B19 = E11 (due date)
+    B19_d=new Date(E11);
+  }
+
+  // ===== Post-Oct'18 Phase =====
+  var B8=new Date(E12); // calc date
+
+  // H8 = ROUNDUP(YEARFRAC(A17, calcDate), 0)
+  var H8=Math.ceil(YF(A17_d,E9));
+  if(H8<0)H8=0;
+
+  // H9: round to next multiple of 3
+  var H9_lookup={1:2,2:1,4:2,5:1,7:2,8:1,10:2,11:1};
+  var H9=(H9_lookup[H8]!==undefined)?parseInt(H9_lookup[H8]):0;
+
+  var H10=H8+H9; // post years (multiple of 3)
+  var H6=preReq?E18:0;
+  var H11=H6+H10; // total validity years
+
+  // E6 = Validity Till
+  var E6;
+  if(preReq){
+    E6=new Date(E10.getFullYear()+H11,E10.getMonth(),E10.getDate()-1);
+  } else {
+    E6=new Date(E10.getFullYear()+H11,E10.getMonth(),E10.getDate());
+  }
+
+  // E22 = post months (penalty)
+  var E22;
+  if(YF(E11,E12)<0){
+    E22=0; // calc date before due date
+  } else {
+    E22=Math.ceil(YF(B19_d,B8)*12);
+  }
+  if(E22<0)E22=0;
+
+  // E23 = post years (renewal)
+  var yfPost=YF(A17_d,E6);
+  var E23=(yfPost>0)?Math.ceil(yfPost):0;
+
+  // E24 = periods
+  var E24=E23/3;
+
+  // E25 = post renewal
+  var E25=E24*rate;
+
+  // E26 = post penalty
+  var E26=E22*500;
+
+  // E27 = post subtotal
+  var E27=E25+E26;
+
+  // E28 = total per lift
+  var E28=E21+E27;
+
+  return {
+    preReq:preReq,
+    preRenewal:E19, prePenalty:E20, preSub:E21,
+    preMonths:E17, preYears:E18,
+    postRenewal:E25, postPenalty:E26, postSub:E27,
+    postMonths:E22, postYears:E23, periods:E24,
+    perLift:E28,
+    validTill:E6
+  };
 }
 
-function F(n){return"\u20B9"+n.toLocaleString("en-IN")}
+// ===== FORMAT =====
+function F(n){return"\u20B9"+Math.round(n).toLocaleString("en-IN")}
 function FD(d){return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
+function toISO(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 
-const app=document.getElementById("app");
-const P=new URLSearchParams(location.search);
-const vid=P.get("id");
+// ===== APP =====
+var app=document.getElementById("app");
+var P=new URLSearchParams(location.search);
+var vid=P.get("id");
 
 if(vid){
-  const c=D.find(x=>x.i==vid);
-  if(!c){app.innerHTML='<div class="fee-view"><p>Consumer not found.</p></div>';}
+  var c=null;
+  for(var k=0;k<D.length;k++){if(D[k].i==vid){c=D[k];break;}}
+  if(!c){app.innerHTML='<div class="fv"><p>Consumer not found.</p></div>';}
   else{
-    const today=new Date();today.setHours(0,0,0,0);
-    const isMulti=c.s.length>1;
-    
-    // Build info lines
-    let infoHtml='Lifts: '+c.l+'<br>';
+    var today=new Date();today.setHours(0,0,0,0);
+    var isMulti=c.s.length>1;
+
+    var infoHtml='Lifts: '+c.l+'<br>';
     if(isMulti){
-      c.s.forEach(s=>{infoHtml+=(s.b||'')+': '+s.r+' (Exp: '+s.e+')<br>'});
+      for(var j=0;j<c.s.length;j++){
+        var s=c.s[j];
+        infoHtml+=(s.b||'')+': '+s.r+' (Exp: '+s.e+')<br>';
+      }
     } else {
       infoHtml+='Reg: '+c.s[0].r+'<br>Expiry: '+c.s[0].e;
     }
-    
-    function render(lt){
-      let html='';
+
+    app.innerHTML='<div class="fv"><div class="fc">'+
+      '<div class="tp"><h2>'+c.n+'</h2><div class="inf">'+infoHtml+'</div></div>'+
+      '<div class="opts">'+
+        '<label>Calculation Date:</label>'+
+        '<input type="date" id="cd" value="'+toISO(today)+'" onchange="doCalc()">'+
+        '<label>Landings:</label>'+
+        '<select id="lt" onchange="doCalc()">'+
+          '<option value="5">5 Landings (\u20B95,000)</option>'+
+          '<option value="5+">5+ Landings (\u20B910,000)</option>'+
+        '</select>'+
+      '</div>'+
+      '<div id="out"></div>'+
+    '</div></div>';
+
+    window.doCalc=function(){
+      var cd=document.getElementById("cd").value;
+      var lt=document.getElementById("lt").value;
+      if(!cd)return;
+      var html='';
+
       if(isMulti){
-        let m=calcMulti(c,today,lt);
-        html+='<div class="sub-table"><table><tr><th>Lift</th><th>Reg.No</th><th>Renewal</th><th>Penalty</th><th>Total</th></tr>';
-        m.subs.forEach(s=>{
-          html+='<tr><td>'+(s.b||'-')+'</td><td>'+s.r+'</td><td class=r>'+F(s.tR)+'</td><td class=r>'+F(s.tP)+'</td><td class=r>'+F(s.pl)+'</td></tr>';
-        });
-        html+='<tr style="font-weight:700;border-top:2px solid #1a3a5c"><td colspan=2>Total ('+c.l+' Lifts)</td><td class=r>'+F(m.tR)+'</td><td class=r>'+F(m.tP)+'</td><td class=r>'+F(m.grand)+'</td></tr></table></div>';
-        document.getElementById("feeTotal").innerHTML='<span>Grand Total ('+c.l+' Lifts)</span><span class="am">'+F(m.grand)+'</span>';
+        html+='<div class="st"><table><tr><th>Lift</th><th>Reg.No</th><th>Renewal</th><th>Penalty</th><th>Total</th></tr>';
+        var gR=0,gP=0,gT=0;
+        for(var j=0;j<c.s.length;j++){
+          var s=c.s[j];
+          var f=calc(s.e,cd,lt);
+          var ren=f.preRenewal+f.postRenewal;
+          var pen=f.prePenalty+f.postPenalty;
+          gR+=ren;gP+=pen;gT+=f.perLift;
+          html+='<tr><td>'+(s.b||'-')+'</td><td style="font-size:0.75rem">'+s.r+'</td><td class="ar">'+F(ren)+'</td><td class="ar">'+F(pen)+'</td><td class="ar">'+F(f.perLift)+'</td></tr>';
+        }
+        html+='<tr style="font-weight:700;border-top:2px solid var(--pri)"><td colspan="2">Grand Total ('+c.l+' Lifts)</td><td class="ar">'+F(gR)+'</td><td class="ar">'+F(gP)+'</td><td class="ar">'+F(gT)+'</td></tr>';
+        html+='</table></div>';
+        html+='<div class="gt"><span>Grand Total</span><span class="am">'+F(gT)+'</span></div>';
       } else {
-        let f=calcOne(c.s[0].e,today,lt);
-        html+='<div class="fee-row"><span class=lb>Renewal Fees</span><span class=vl>'+F(f.tR)+'</span></div>';
-        html+='<div class="fee-row"><span class=lb>Penalty Fees</span><span class=vl>'+F(f.tP)+'</span></div>';
-        html+='<div class="fee-row"><span class=lb>Total per Lift</span><span class=vl>'+F(f.pl)+'</span></div>';
-        let grand=f.pl*c.l;
-        document.getElementById("feeTotal").innerHTML='<span>Grand Total ('+c.l+' Lift'+(c.l>1?'s':'')+')</span><span class="am">'+F(grand)+'</span>';
+        var f=calc(c.s[0].e,cd,lt);
+        if(f.preReq && f.preSub>0){
+          html+='<div class="sh">Pre-Oct 2018 Fees</div>';
+          html+='<div class="fr">';
+          html+='<div class="r"><span class="lb">Renewal ('+f.preYears+' yrs \u00D7 \u20B9500)</span><span class="vl">'+F(f.preRenewal)+'</span></div>';
+          html+='<div class="r"><span class="lb">Penalty ('+f.preMonths+' months \u00D7 \u20B950)</span><span class="vl">'+F(f.prePenalty)+'</span></div>';
+          html+='<div class="r"><span class="lb"><b>Subtotal</b></span><span class="vl"><b>'+F(f.preSub)+'</b></span></div>';
+          html+='</div>';
+        }
+        html+='<div class="sh">Post-Oct 2018 Fees</div>';
+        html+='<div class="fr">';
+        html+='<div class="r"><span class="lb">Renewal ('+f.periods+' periods \u00D7 '+F(lt==="5+"?10000:5000)+')</span><span class="vl">'+F(f.postRenewal)+'</span></div>';
+        html+='<div class="r"><span class="lb">Penalty ('+f.postMonths+' months \u00D7 \u20B9500)</span><span class="vl">'+F(f.postPenalty)+'</span></div>';
+        html+='<div class="r"><span class="lb"><b>Subtotal</b></span><span class="vl"><b>'+F(f.postSub)+'</b></span></div>';
+        html+='</div>';
+        html+='<div class="fr">';
+        html+='<div class="r"><span class="lb">Total per Lift</span><span class="vl">'+F(f.perLift)+'</span></div>';
+        html+='<div class="r"><span class="lb">Validity Till</span><span class="vl">'+FD(f.validTill)+'</span></div>';
+        html+='</div>';
+        var grand=f.perLift*c.l;
+        html+='<div class="gt"><span>Grand Total ('+c.l+' Lift'+(c.l>1?'s':'')+')</span><span class="am">'+F(grand)+'</span></div>';
       }
-      document.getElementById("feeBody").innerHTML=html;
-    }
-    
-    app.innerHTML=`<div class="fee-view"><div class="fee-card">
-      <div class="top"><h2>${c.n}</h2><div class="info">${infoHtml}</div></div>
-      <div class="lt-toggle">
-        <label>Landing Type:</label>
-        <select id="ltSel" onchange="render(this.value)">
-          <option value="5" selected>5 Landings (\u20B95,000/period)</option>
-          <option value="5+">5+ Landings (\u20B910,000/period)</option>
-        </select>
-      </div>
-      <div id="feeBody"></div>
-      <div class="fee-total" id="feeTotal"></div>
-      <div class="fee-note">Fees calculated dynamically as on ${FD(today)}. Penalty accrues monthly.<br>Change landing type above if applicable.</div>
-    </div></div>`;
-    window.render=render;
-    render("5");
+      html+='<div class="nt">Fees calculated as on '+FD(new Date(cd))+'. Penalty accrues monthly.<br>Change date or landing type above to recalculate.</div>';
+      document.getElementById("out").innerHTML=html;
+    };
+    doCalc();
   }
 } else {
-  // List view
-  const PS=24;let pg=0,flt="";
-  function fil(){let f=flt.toLowerCase();return D.filter(c=>!f||c.n.toLowerCase().includes(f)||c.s.some(s=>s.r.toLowerCase().includes(f))||String(c.i).includes(f))}
+  // ===== LIST VIEW =====
+  var PS=24,pg=0,flt="";
+  function fil(){var f=flt.toLowerCase();return D.filter(function(c){return !f||c.n.toLowerCase().indexOf(f)>=0||c.s.some(function(s){return s.r.toLowerCase().indexOf(f)>=0})||String(c.i).indexOf(f)>=0;});}
   function ren(){
-    let ls=fil(),pages=Math.ceil(ls.length/PS);
+    var ls=fil(),pages=Math.ceil(ls.length/PS);
     if(pg>=pages)pg=Math.max(0,pages-1);
-    let sl=ls.slice(pg*PS,(pg+1)*PS);
-    let td=new Date();td.setHours(0,0,0,0);
-    let gh='';
-    sl.forEach(c=>{
-      let m=calcMulti(c,td,"5");
-      let regs=c.s.length>1?c.s.map(s=>(s.b||'')+'-'+s.r).join(', '):c.s[0].r;
-      gh+=`<div class="c-card" onclick="location.href='?id=${c.i}'">
-        <h3>${c.i}. ${c.n}</h3>
-        <div class="meta">Reg: ${regs.substring(0,60)}${regs.length>60?'...':''} | Lifts: ${c.l}</div>
-        <div>As on ${FD(td)}: <span class="total">${F(m.grand)}</span></div>
-      </div>`;
-    });
+    var sl=ls.slice(pg*PS,(pg+1)*PS);
+    var td=new Date();td.setHours(0,0,0,0);
+    var gh='';
+    for(var k=0;k<sl.length;k++){
+      var c=sl[k];
+      var gt=0;
+      for(var j=0;j<c.s.length;j++){
+        var f=calc(c.s[j].e,toISO(td),"5");
+        gt+=f.perLift;
+      }
+      if(c.s.length===1)gt=gt*c.l;
+      var regs=c.s.length>1?c.s.map(function(s){return (s.b||'')+'-'+s.r;}).join(', '):c.s[0].r;
+      gh+='<div class="cc" onclick="location.href=\'?id='+c.i+'\'">'+
+        '<h3>'+c.i+'. '+c.n+'</h3>'+
+        '<div class="meta">Reg: '+(regs.length>60?regs.substring(0,57)+'...':regs)+' | Lifts: '+c.l+'</div>'+
+        '<div>As on '+FD(td)+': <span class="total">'+F(gt)+'</span></div>'+
+      '</div>';
+    }
     document.getElementById("grid").innerHTML=gh;
-    let ph='';for(let i=0;i<pages;i++)ph+=`<button class="${i===pg?'act':''}" onclick="gp(${i})">${i+1}</button>`;
+    var ph='';for(var i=0;i<pages;i++){ph+='<button class="'+(i===pg?'act':'')+'" onclick="gp('+i+')">'+String(i+1)+'</button>';}
     document.getElementById("pgr").innerHTML=ph;
   }
-  window.gp=function(p){pg=p;ren();scrollTo(0,180)};
-  app.innerHTML=`<div class="ctrls"><input type="text" id="srch" placeholder="Search name, reg no, or serial..."><button onclick="window.print()">Print</button></div><div class="pager" id="pgr"></div><div class="grid" id="grid"></div>`;
-  document.getElementById("srch").addEventListener("input",e=>{flt=e.target.value;pg=0;ren()});
+  window.gp=function(p){pg=p;ren();scrollTo(0,180);};
+  app.innerHTML='<div class="ctrls"><input type="text" id="srch" placeholder="Search name, reg no, or serial..."><button onclick="window.print()">Print</button></div><div class="pgr" id="pgr"></div><div class="grid" id="grid"></div>';
+  document.getElementById("srch").addEventListener("input",function(e){flt=e.target.value;pg=0;ren();});
   ren();
 }
 </script>
