@@ -6,615 +6,561 @@
 <title>Lift License Renewal - Fee Calculator</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-:root{--bg:#f5f0eb;--card:#fff;--pri:#1a3a5c;--acc:#c0392b;--txt:#2c2c2c;--mut:#6b7280;--bdr:#d1c7b7;--hl:#fef3c7}
+:root{--bg:#f5f0eb;--card:#fff;--pri:#1a3a5c;--acc:#c0392b;--txt:#2c2c2c;--mut:#6b7280;--bdr:#d1c7b7;--hl:#fef3c7;--govt:#1e7d3a;--govtBg:#e6f4ec}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
 header{background:var(--pri);color:#fff;padding:18px 20px;text-align:center}
 header h1{font-size:1.15rem;font-weight:700}
-header p{font-size:0.78rem;opacity:0.8;margin-top:2px}
-.fv{max-width:620px;margin:20px auto;padding:0 12px}
-.fc{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden}
-.fc .tp{background:var(--pri);color:#fff;padding:16px 18px}
-.fc .tp h2{font-size:1rem;font-weight:600}
-.fc .tp .inf{opacity:0.8;font-size:0.82rem;margin-top:4px;line-height:1.6}
-.opts{padding:12px 18px;background:#eef2f7;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:0.88rem}
-.opts label{font-weight:600;color:var(--pri);white-space:nowrap}
-.opts select,.opts input[type=date]{padding:6px 10px;border-radius:6px;border:1px solid var(--bdr);font-family:inherit;font-size:0.88rem}
-.fr{padding:14px 18px}
-.r{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:0.88rem}
-.r:last-child{border-bottom:none}
-.r .lb{color:var(--mut);max-width:60%}
-.r .vl{font-weight:600;text-align:right}
-.sh{background:#f0ece6;padding:10px 18px;font-weight:700;font-size:0.85rem;color:var(--pri);border-top:2px solid var(--bdr)}
-.gt{background:var(--hl);padding:14px 18px;display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700}
-.gt .am{color:var(--acc)}
-.nt{padding:10px 18px;font-size:0.75rem;color:var(--mut);text-align:center;border-top:1px solid #eee}
-.st{padding:8px 18px;background:#f9f7f4}
-.st table{width:100%;font-size:0.8rem;border-collapse:collapse}
-.st th{text-align:left;color:var(--pri);padding:4px 6px;border-bottom:2px solid var(--bdr);font-weight:600}
-.st td{padding:4px 6px;border-bottom:1px solid #eee}
-.st td.ar{text-align:right;font-weight:600}
+header p{font-size:0.78rem;opacity:0.85;margin-top:2px}
+.fee-view{max-width:640px;margin:20px auto;padding:0 12px}
+.fee-card{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden}
+.fee-card .top{background:var(--pri);color:#fff;padding:16px 18px}
+.fee-card .top h2{font-size:1rem;font-weight:600;line-height:1.35}
+.fee-card .top .info{opacity:0.85;font-size:0.82rem;margin-top:6px;line-height:1.6}
+.type-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:0.72rem;font-weight:700;margin-bottom:6px;letter-spacing:.03em}
+.type-P{background:var(--acc);color:#fff}
+.type-G{background:var(--govt);color:#fff}
+.govt-banner{background:var(--govtBg);color:var(--govt);padding:14px 18px;text-align:center;font-weight:600;font-size:0.95rem;border-bottom:1px solid #cfe4d6}
+.fee-rows{padding:14px 18px}
+.fee-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:0.88rem}
+.fee-row:last-child{border-bottom:none}
+.fee-row .lb{color:var(--mut);max-width:60%}
+.fee-row .vl{font-weight:600;text-align:right}
+.fee-total{background:var(--hl);padding:14px 18px;display:flex;justify-content:space-between;font-size:1.05rem;font-weight:700;flex-wrap:wrap;gap:4px}
+.fee-total .am{color:var(--acc)}
+.fee-total.govt{background:var(--govtBg)}
+.fee-total.govt .am{color:var(--govt)}
+.dates-row{padding:12px 18px;background:#f9f7f4;font-size:0.82rem;color:var(--mut);border-top:1px solid #eee;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.dates-row div{min-width:45%}
+.dates-row b{color:var(--txt);display:block;font-size:0.9rem}
+.fee-note{padding:12px 18px;font-size:0.72rem;color:var(--mut);text-align:center;border-top:1px solid #eee;line-height:1.5}
+.sub-table{padding:8px 18px;background:#f9f7f4}
+.sub-table table{width:100%;font-size:0.8rem;border-collapse:collapse}
+.sub-table th{text-align:left;color:var(--pri);padding:4px 6px;border-bottom:2px solid var(--bdr);font-weight:600}
+.sub-table td{padding:4px 6px;border-bottom:1px solid #eee}
+.sub-table td.r{text-align:right;font-weight:600}
+.warn{background:#fff3cd;color:#7a5900;padding:10px 18px;font-size:0.8rem;text-align:center;border-top:1px solid #f0dea6}
+/* List view */
 .ctrls{max-width:920px;margin:14px auto;padding:0 12px;display:flex;gap:8px;flex-wrap:wrap}
-.ctrls input[type=text]{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;font-size:0.88rem;font-family:inherit}
-.ctrls button{padding:9px 16px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-family:inherit;font-weight:600;cursor:pointer;font-size:0.85rem}
+.ctrls input{flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--bdr);border-radius:8px;font-size:0.88rem;font-family:inherit}
+.ctrls button,.ctrls select{padding:9px 12px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-family:inherit;font-weight:600;cursor:pointer;font-size:0.85rem}
+.ctrls select{background:#fff;color:var(--txt);border:1px solid var(--bdr)}
 .grid{max-width:920px;margin:14px auto;padding:0 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.cc{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:box-shadow .2s}
-.cc:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-.cc h3{font-size:0.78rem;font-weight:600;color:var(--pri);min-height:2.2em}
-.cc .meta{font-size:0.72rem;color:var(--mut);margin:3px 0 6px}
-.cc .total{font-weight:700;color:var(--acc);font-size:0.95rem}
-.pgr{max-width:920px;margin:8px auto;padding:0 12px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
-.pgr button{padding:5px 10px;border:1px solid var(--bdr);border-radius:6px;background:#fff;cursor:pointer;font-family:inherit;font-size:0.8rem}
-.pgr button.act{background:var(--pri);color:#fff;border-color:var(--pri)}
-.dept{background:var(--pri);color:#fff;padding:8px 18px;font-size:0.7rem;text-align:center;opacity:0.7;margin-top:20px}
-@media print{.ctrls,.pgr{display:none}.grid{gap:8px}.cc{page-break-inside:avoid;border:1px solid #999}}
+.c-card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:box-shadow .2s;position:relative}
+.c-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+.c-card .tag{position:absolute;top:8px;right:8px;padding:2px 8px;border-radius:10px;font-size:0.65rem;font-weight:700}
+.c-card .tag.P{background:var(--acc);color:#fff}
+.c-card .tag.G{background:var(--govt);color:#fff}
+.c-card h3{font-size:0.78rem;font-weight:600;color:var(--pri);min-height:2.2em;margin-top:4px}
+.c-card .meta{font-size:0.72rem;color:var(--mut);margin:3px 0 6px}
+.c-card .total{font-weight:700;color:var(--acc);font-size:0.95rem}
+.c-card.g .total{color:var(--govt)}
+.pager{max-width:920px;margin:8px auto;padding:0 12px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.pager button{padding:5px 10px;border:1px solid var(--bdr);border-radius:6px;background:#fff;cursor:pointer;font-family:inherit;font-size:0.8rem}
+.pager button.act{background:var(--pri);color:#fff;border-color:var(--pri)}
+.dept{background:var(--pri);color:#fff;padding:8px 18px;font-size:0.7rem;text-align:center;opacity:0.75;margin-top:20px}
+@media print{.ctrls,.pager{display:none}.grid{gap:8px}.c-card{page-break-inside:avoid;border:1px solid #999}}
 </style>
 </head>
 <body>
 <header>
-<h1>Electrical Inspectorate &#8212; Lift License Renewal Fees</h1>
-<p>Cuddalore Division, Tamil Nadu</p>
+<h1>Electrical Inspectorate — Lift License Renewal Fees</h1>
+<p>Cuddalore Division, Tamil Nadu  &middot;  Amendment Act 2025 (w.e.f. 03.02.2026)</p>
 </header>
 <div id="app"></div>
-<div class="dept">Office of the Electrical Inspector, Cuddalore Division</div>
+<div class="dept">Office of the Electrical Inspector, Cuddalore Division  &middot;  Renewal period: 5 years  &middot;  Late penalty: &#8377;500/month per lift, capped at &#8377;1500</div>
 <script>
-// ===== CONSUMER DATA =====
-var D=[
-{i:1,n:'Annamalai University Annamalai Nagar, Chidambaram',l:5,s:[{r:'16/2001-02',e:'2007-06-13'}]},
-{i:2,n:'Registrar  Annamalai University, Annamalai Nagar, Chidambaram',l:5,s:[{r:'18/2001-02',e:'2007-11-26'}]},
-{i:3,n:'Tmt.Vimala, Sugam Appartments Vimala Garden, East Car St,Annamalai Nagar, Chidam',l:1,s:[{r:'1/2007-18',e:'2008-07-08'}]},
-{i:4,n:'A. Sethuraman AVS Tower,15, V.O.C. Street, Villupuram',l:1,s:[{r:'1/1998-99',e:'2008-11-30'}]},
-{i:5,n:'M.S. Maniam Sri Krishna Building,1563 , Big Bazar, Nagapttinam',l:1,s:[{r:'15/2001-02',e:'2008-12-12'}]},
-{i:6,n:'R. Veeramani R. Veeramani,Plot No.5-10,Chinnaya Avenue, Chidambarm',l:1,s:[{r:'6/2009-10',e:'2011-01-04'}]},
-{i:7,n:'S.Shajahan,Pramalaya Apartment Flat No.G3,Door No.131, kanaga sabai Nagar, , Chi',l:1,s:[{r:'9/2009-10',e:'2011-03-09'}]},
-{i:8,n:'Hotel Akshaya 17-18 East Car Street, Chidambaram',l:1,s:[{r:'7/1998-99',e:'2011-05-14'}]},
-{i:9,n:'Ragas Apartment,  Opp to LIC Office, 52-B Durgam Road, Kallakurichi',l:1,s:[{r:'1/2008-09',e:'2012-07-16'}]},
-{i:10,n:'S.Manikam and M.Jayamani 189, Jothi Vallalar st, Salem Main Road, Kallakurichi, ',l:1,s:[{r:'35/2011-12',e:'2012-07-28'}]},
-{i:11,n:'Saradharam Temple view Appartment 9/11, Old No, 6,7,Theradikadai street, Chidamb',l:1,s:[{r:'2/2006-07',e:'2013-02-07'}]},
-{i:12,n:'A.K.Natarajan & AK Mahesh  D.No:40 to 43,North Car street, Chidambaram, Chidamba',l:2,s:[{r:'44/2011-12',e:'2013-03-29'}]},
-{i:13,n:'New Dhanalakshmi Stores 42, Super Bazar, Perambalur, Perambalur',l:1,s:[{r:'L880/2012-13',e:'2013-04-22'}]},
-{i:14,n:'Dr. T.Vasudevan, Krishna Iyer Apt  Block-II,  21,Ranga Rao Street,Seetha ram Nag',l:1,s:[{r:'02/2004-05',e:'2013-06-01'}]},
-{i:15,n:'Dr. T.Vasudevan,Krishna Iyer Apt Block-I, 21,Ranga Rao Street, Seetharam Nagar  ',l:1,s:[{r:'02/2004-05',e:'2013-06-16'}]},
-{i:16,n:'V.Kalavathi V.Kalavathi,Plot No.14, Pragannyagi Ammal Nagar, Cuddalore',l:1,s:[{r:'05/2009-10',e:'2013-12-01'}]},
-{i:17,n:'Dr. G.P. Sekar Sujatha Hospital,78, Nethaji Road, Cuddalore',l:1,s:[{r:'15/2000-2001',e:'2014-01-11'}]},
-{i:18,n:'A. K. Natarajan 155/3, Shree Rajeswari Nagar. Malar Avenue, Thurugam Rd.,, Kalla',l:1,s:[{r:'50/2012-13',e:'2014-03-26'}]},
-{i:19,n:'R.Sethuraman & R.Kedarnathan and others  Narayanan st, Chidambaram , Chidambaram',l:1,s:[{r:'43/2011-12',e:'2014-03-29'}]},
-{i:20,n:'N.G. Manickam &  T.K.Vembu Block 13, Bharathidasan St,, Chidambaram',l:1,s:[{r:'03/2009-10',e:'2014-08-11'}]},
-{i:21,n:'V.Rajalakshmi,Vijaya Surya Hotel 4, North Kavarai st, Manjakuppam,, Cuddalore',l:1,s:[{r:'63/2013-14',e:'2014-08-20'}]},
-{i:22,n:'V.Maheswari 54,Kulathumettu Street, Kallakuruchi, Kallakurichi',l:1,s:[{r:'64/13-14',e:'2014-09-09'}]},
-{i:23,n:'S.Vimala   6/6A./6/7, Natarajapuram Road, Annamalai Nagar, , Chidambaram',l:2,s:[{r:'01/2009-10',e:'2014-12-22'}]},
-{i:24,n:'S.Ravindran, Karpagam Stores,Big Bazar Street, Nagore, Nagai,.',l:1,s:[{r:'21/2004-05',e:'2015-01-23'}]},
-{i:25,n:'Dhanalakshmi Srinivasan Hotels Pvt ltd., Collector office Road, Palakkarai, Pera',l:1,s:[{r:'1124/2014-15',e:'2015-04-09'}]},
-{i:26,n:'C.K. Sivasubramanian Renuka Silks, thuraiyur Road, , Perambalur',l:1,s:[{r:'1135/2014',e:'2015-05-01'}]},
-{i:27,n:'O.M. Ansari No.6 Pazhayapattinam Road,Kottakuppam . , Vanur',l:1,s:[{r:'46/2012-13',e:'2015-05-03'}]},
-{i:28,n:'Kavidass Kavidass,218/A,Gandhi Bazzar, Gingee',l:1,s:[{r:'76/2014-15',e:'2015-05-13'}]},
-{i:29,n:'JPS Promotors, Sushil Apartments 11A Beach Road, Manjakuppam, Cuddalore',l:1,s:[{r:'77/14-15',e:'2015-06-18'}]},
-{i:30,n:'S.Sivakumar,122,123 East Car Street, Chidambaram',l:2,s:[{r:'19/2010-11',e:'2015-10-07'}]},
-{i:31,n:'D Ravi Sankar Salem Main Road  ,Uaganakathan, Kallakaurichi',l:1,s:[{r:'94/2015',e:'2016-02-25'}]},
-{i:32,n:'K.Selvamani 199, Annagramam, Gandhi Nagar, Vadakkuthu, Kurinjipadi',l:1,s:[{r:'52/13-14',e:'2016-04-04'}]},
-{i:33,n:'The Collector office, Master Plan complex,  Master Plan Complex, Perambalur, Per',l:2,s:[{b:'A',r:'73/2006',e:'2016-04-10'},{b:'B',r:'72/2006',e:'2016-04-16'}]},
-{i:34,n:'SPA Silks No. 110C, Neyveli Road, , Vadalur',l:1,s:[{r:'97/2015',e:'2016-04-14'}]},
-{i:35,n:'Balaji Apartments  Mo. 1, Azhagappa Nagar, Manjakuppam, Cuddalore',l:1,s:[{r:'126/2015',e:'2016-06-01'}]},
-{i:36,n:'R. Venkat North Street, , Thirukoilur',l:1,s:[{r:'101/2015',e:'2016-07-01'}]},
-{i:37,n:'N. Ramuchettiyar S.No.864/3, North Street, Thirukoilur',l:1,s:[{r:'102/2015-16',e:'2016-07-12'}]},
-{i:38,n:'R.P. Prabhuram Seetharam Nagar, , Cuddalore',l:1,s:[{r:'115/2015-16',e:'2016-11-08'}]},
-{i:39,n:'Dr. Seetharaman & Vasantharaman 30-31 RS No. 434 /IPT Keelputhupet, Tindivanam T',l:1,s:[{r:'01/2006-2007',e:'2016-12-04'}]},
-{i:40,n:'Varadharajan & Malarvizhi The Grand white palace, Northe Car Street,, Sirkazhi',l:2,s:[{r:'120/2015-16',e:'2017-01-13'}]},
-{i:41,n:'C. Vadivelu Rabindranath Tagore salai,, Neyveli',l:1,s:[{r:'19/2015-16',e:'2017-05-13'}]},
-{i:42,n:'B. Arunkumar, Marutham Builders Ward,7, Block-7, Pennaiyar Road, Manjakuppam, Cu',l:1,s:[{r:'130/2016-17',e:'2017-06-26'}]},
-{i:43,n:'T.Latha, T.Vinothkumar 51, Salem Main Road, Kallakurichi, Kallakurichi',l:1,s:[{r:'62/2013-14',e:'2017-08-04'}]},
-{i:44,n:'M.Venkataparaneeswaran No.36, R.S. No.63/1 Eswaran Koil St.,Tindivanam.',l:1,s:[{r:'48/2012-13',e:'2017-09-08'}]},
-{i:45,n:'P.Seshadri P.Seshadri,Agasampet, Setharapet,, Vanur',l:1,s:[{r:'70/2013',e:'2017-12-01'}]},
-{i:46,n:'Palani .R Plot No.13,14,15.16, Chinnaiya Avenue, CBM, Chidambaram',l:1,s:[{r:'71/2013-14',e:'2017-12-22'}]},
-{i:47,n:'S. Sathishkumar, Mettupakkam Foundation (P) Ltd., Thirumanjana Veedi,Thiruvindal',l:2,s:[{r:'96/2015-16',e:'2018-03-24'}]},
-{i:48,n:'R.Sudha, Bammaiar Palayam, Old Auroville Road, Oorachi, Vanur TK, Villupuram',l:1,s:[{r:'172/2017-18',e:'2018-05-03'}]},
-{i:49,n:'S.Ramamurthy, G.Vaidehi, No.6, Pragasam Street, Thiyagaraya nagar, Mayiladuthura',l:1,s:[{r:'174/2017-18',e:'2018-05-21'}]},
-{i:50,n:'Dr. K. Dakshnamoorthy (Nagai Hospital) Nagai Hospital,3/134, Main road, Puthur, ',l:1,s:[{r:'1/2006-07',e:'2018-05-30'}]},
-{i:51,n:'S.B.Samsudeen & Megaraj (Hotel Vasantham) Hotel Vasantham, 744,Kumbakonam Road, ',l:1,s:[{r:'4/2009-10',e:'2018-08-11'}]},
-{i:52,n:'Ahmed Moideen, Salapalli street, Nagapattinam',l:1,s:[{r:'182/2017-18',e:'2018-09-18'}]},
-{i:53,n:'K.R. Pooranan,AERA Building  Rs.No. 9/3C2, 7/1 A2, Opp. to R.M.M.C.M , O.P. Main',l:1,s:[{r:'68/2013-14',e:'2018-10-08'}]},
-{i:54,n:'Arthiya Clinic  99/9.Ganesanar Street, Ulundurpet., Ulundurpettai',l:1,s:[{r:'69/13-14',e:'2018-11-03'}]},
-{i:55,n:'VPN  Hotel   VPN Hotel Nethaji Road, Nagapttinam',l:1,s:[{r:'19/2003-04',e:'2018-12-03'}]},
-{i:56,n:'Hotel Dayalan, Narayanapillai Street , Mayiladuthurai',l:1,s:[{r:'19/2006-07',e:'2018-12-30'}]},
-{i:57,n:'PSR Sathiyamurthi, Hotel Sri Ranga,30-31 Rajaji Road, Panruti',l:1,s:[{r:'8/2000-01',e:'2019-05-18'}]},
-{i:58,n:'Mohamed Salik,Million Day Hotel& Lodge 150,151, Pattamangala st, Mayiladuthurai,',l:3,s:[{r:'54/2013-14',e:'2019-06-04'}]},
-{i:59,n:'Govt Head Quarter Hosptial , Hospital Road, Cuddalore-01',l:1,s:[{r:'14/2001-02',e:'2019-07-03'}]},
-{i:60,n:'V.Ragavan, Nalam Hospital, Chidambaram Main Road, Jayamkondam, Ariyalur',l:1,s:[{r:'207/2018-19',e:'2019-09-04'}]},
-{i:61,n:'Dr. P.V.Ramesh Vijay Polyclinic,217 Gandhi Road, Kallakurichi',l:1,s:[{r:'2/200',e:'2019-11-05'}]},
-{i:62,n:'The Secretary,Hi-tech Appartment, 177/95, West Car Street, Chidambaram - 608001',l:1,s:[{r:'5/2004-05',e:'2020-03-25'}]},
-{i:63,n:'The District Collector,The New Collectorate in Master Plan Complex Ariyalur',l:1,s:[{r:'L-1118/2013-2014',e:'2021-03-16'}]},
-{i:64,n:'RAMESH SILKS,6a,kachery road kallakurichi,',l:1,s:[{r:'3/2008-2009',e:'2021-08-31'}]},
-{i:65,n:'P.Gopinath,122A/1 Mahatma Gandhi Road, Gingee',l:1,s:[{r:'156/2016-2017',e:'2021-11-16'}]},
-{i:66,n:'Dr. K. Manimekalai, RS.No. 15/4A1A, Vadakuthu Village,chennai to kumbakonam road',l:1,s:[{r:'208/2018-19',e:'2021-11-26'}]},
-{i:67,n:'Dr R. Poongodi,Pentagon Hospitals, 12, Sattaiappar East Street, Nagapattinam',l:1,s:[{r:'2/2006-2007',e:'2021-11-28'}]},
-{i:68,n:'THE SUB JUDGE,COMBINED COURT BUILDING, GINGEE',l:1,s:[{r:'158/2016-17',e:'2022-01-04'}]},
-{i:69,n:'THE SUB JUDGE,COMBINED COURT BUILDING GINGEE',l:1,s:[{r:'159/2016-17',e:'2022-01-04'}]},
-{i:70,n:'Medical Superintendent,Govt Medical college Hospital Mundiyambakkam Villupuram,',l:5,s:[{b:'A',r:'22/2010-11',e:'2022-01-27'},{b:'B',r:'23/2010-11',e:'2022-01-27'},{b:'C',r:'24/2010-11',e:'2022-01-27'},{b:'D',r:'25/2010-11',e:'2022-01-27'},{b:'E',r:'26/2010-11',e:'2022-01-27'}]},
-{i:71,n:'The Dean,Govt Villupuram Medical college Hospital Mundiyambakkam Villupuram',l:3,s:[{b:'A',r:'39/2011-2012',e:'2022-02-12'},{b:'B',r:'40/2011-2012',e:'2022-02-12'},{b:'C',r:'41/11-12',e:'2022-02-12'}]},
-{i:72,n:'K. Valarmathi,Pugazh hospital, 52B/23, Thiruvarangam Nagar, Kallakurichi',l:1,s:[{r:'7/2009-10',e:'2022-03-04'}]},
-{i:73,n:'Dr.A. Vasanthi,No: 140 & 141, Market Road, Perambalur',l:1,s:[{r:'L975/2012-2013',e:'2022-03-14'}]},
-{i:74,n:'Chief Medical Officer,Government Kamaraj Hospital, Chidambaram',l:1,s:[{r:'123/2015-2016',e:'2022-03-17'}]},
-{i:75,n:'Sri Kannika Parameswari Store,91, Kamarajar Street, Villupuram',l:1,s:[{r:'01A/2006',e:'2022-03-26'}]},
-{i:76,n:'Suham Apartments Owners Welfare Association,Vimala garden,op main road,Annamalai',l:1,s:[{r:'02/2009-2010',e:'2022-04-07'}]},
-{i:77,n:'The Sub Judge,Combined Court Building Tindivanam',l:2,s:[{b:'A',r:'169/2017-2018',e:'2022-05-03'},{b:'B',r:'170/2017-2018',e:'2022-05-03'}]},
-{i:78,n:'Villupuram Medical College,Villupuram Medical College Mundiyambakkam, Villupuram',l:1,s:[{r:'171/2017-2018',e:'2022-05-03'}]},
-{i:79,n:'HOTEL DURAI,17 IMPERIAL ROAD, CUDDALORE',l:1,s:[{r:'CUD2/1998-99',e:'2022-05-14'}]},
-{i:80,n:'Govt Head Quarters Hospital, MCH Building , Cuddalore-607001',l:2,s:[{r:'219/19-20',e:'2022-05-20'}]},
-{i:81,n:'Dr. V.Veenarani,VV Hospital, No.54, Kasura Garden 1st Street, Tirukoilur - 60575',l:1,s:[{r:'126/2016-17',e:'2022-05-22'}]},
-{i:82,n:'DR.G.RAJKUMAR,SUNDARA VINAYAGAR KOIL STREET KALLAKURICHI,',l:1,s:[{r:'12/2010-2011',e:'2022-05-31'}]},
-{i:83,n:'M/S M VENKATESHWARAN,NO 1785 BLOCK NO 47 6 IMPERIAL ROAD CUDDALORE',l:1,s:[{r:'59/13-14',e:'2022-06-09'}]},
-{i:84,n:'THE INDIA CEMENTS LTD,THE INDIA CEMENTS LTD, DALAVOI WORKS, CEMENT NAGAR P.O',l:1,s:[{r:'L264/98-99',e:'2022-06-19'}]},
-{i:85,n:'M/s. Dr.L.Paul,No.154, Mettu Street, (Old Bus Stand) Perambalur',l:1,s:[{r:'L801/2011-2012',e:'2022-06-19'}]},
-{i:86,n:'Hotel PAMS,30-B. Town Extension Road, OPP: Old Bus Stand, Mayiladuthurai-609001',l:1,s:[{r:'7/2005-06',e:'2022-06-20'}]},
-{i:87,n:'Mrs.E.CHANDRAPRIYA,NO.106G/35,VENKATESAPURAM ,NEAR KRISHNA THEATRE, PERAMBALUR-1',l:1,s:[{r:'202/2018-2019',e:'2022-07-09'}]},
-{i:88,n:'PAMS Residency,No.9/10, Pattamangala Street, Mayiladuthurai - 609001,',l:1,s:[{r:'203/18-19',e:'2022-08-05'}]},
-{i:89,n:'N karuppannan,331 G Mettu street Elambalur Road Perambalur',l:3,s:[{b:'A',r:'178/2017-2018',e:'2022-08-07'},{b:'B',r:'179/2017-2018',e:'2022-08-07'},{b:'C',r:'180/2017-2018',e:'2022-08-07'}]},
-{i:90,n:'The Judicial Magistrate,Combined Court Building Ulundurpet',l:2,s:[{b:'A',r:'135/2016-2017',e:'2022-09-08'},{b:'B',r:'136/2016-2017',e:'2022-09-08'}]},
-{i:91,n:'A.Mani,Old No.271/4A2 Durugam Main Road,Kallakurichi',l:1,s:[{r:'146/2016-2017',e:'2022-09-21'}]},
-{i:92,n:'N.Vijayalakshmi,52/2D1,thiruvarangam nagar, durugam road, KALLAKURICHI,',l:1,s:[{r:'17/2010-11',e:'2022-09-22'}]},
-{i:93,n:'M/s. SCM CLOTHES (P) LTD,No.93/B,93/4,93/5 Trichy Main Road, Villupuram-605402,',l:4,s:[{b:'A',r:'109/2015-2016',e:'2022-10-08'},{b:'B',r:'110/2015-2016',e:'2022-10-08'},{b:'C',r:'111/2015-2016',e:'2022-10-08'},{b:'D',r:'112/2015-2016',e:'2022-10-08'}]},
-{i:94,n:'Jansen Infrastructure Pvt Ltd,S.No. 181/2A, 181/2B1A, 181/3C1, 181/3D, Bypass Ro',l:1,s:[{r:'221/19-20',e:'2022-10-15'}]},
-{i:95,n:'Sukkibai,No.60, Sannadhi Street, Thirukovillur - 605 757.,',l:1,s:[{r:'113/2015-2016',e:'2022-10-18'}]},
-{i:96,n:'ADDITIONAL DISTRICT JUDGE,New Combined Court Building,Near Chidambaram RTO Offic',l:3,s:[{b:'A',r:'223/2019-20',e:'2022-10-24'},{b:'B',r:'224/2019-20',e:'2022-10-24'},{b:'C',r:'225/2019-20',e:'2022-10-24'}]},
-{i:97,n:'VIJAY SPECIALITY CENTRE,VIJAY SPECIALITY CENTRE, No.78, Chekkumettu Street, Kall',l:1,s:[{r:'37834',e:'2022-12-09'}]},
-{i:98,n:'Dr.A.SUSILA,AS Imaging Center,27,Pattu Nulkara Street Ariyalur 621704',l:1,s:[{r:'233/2019-2020',e:'2023-02-09'}]},
-{i:99,n:'The Principal,Govt. Polytechnic College, Kattuvanajur Village',l:1,s:[{r:'238/2019-2020',e:'2023-03-15'}]},
-{i:100,n:'SUB JUDGE,No.Combined Court Building, Kamaraj Nagar, Panruti - 607106 Cuddalore ',l:1,s:[{r:'239/2020-21',e:'2023-05-22'}]},
-{i:101,n:'The Principal District Munsif,Combined Court Building, Sandapet, Thirukovilur - ',l:2,s:[{b:'A',r:'242/2020-2021',e:'2023-07-12'},{b:'B',r:'243/220-2021',e:'2023-07-12'}]},
-{i:102,n:'Tmt.R.Shanthi,No.1, Chavadi Main Road, Thirupapuliyur',l:1,s:[{r:'244/2020-2021',e:'2023-09-06'}]},
-{i:103,n:'mt.R.Shanthi,No.1, Chavadi Main Road, Thirupapuliyur,,',l:1,s:[{r:'245/2020-2021',e:'2023-09-06'}]},
-{i:104,n:'THE SUPERINTENDENT,GOVT.HEAD QUARTERS HOSPITAL,OP AND MCH BUILDING,THURAIYUR ROA',l:1,s:[{r:'258/2020-2021',e:'2023-10-18'}]},
-{i:105,n:'T RAJESH KANNA,NO. H18, 18A, H18B, H18C, H18D, S.R.NO. 228/2, PLOT NO. H-18, J.J',l:1,s:[{r:'155/2016-2017',e:'2023-11-04'}]},
-{i:106,n:'Sri Nidhi Rathina Theatre,Rajaji Salai, Block-12, Neyveli Township - 607803',l:1,s:[{r:'261/2020-2021',e:'2023-11-15'}]},
-{i:107,n:'N.Kannan,Vaira Maligai, No.31, Salem Main Road, Kallakurichi-606202',l:1,s:[{r:'266/2020-2021',e:'2023-11-22'}]},
-{i:108,n:'The Collector,Collector Office,Master Plan Complex, Perambalur 621212,',l:1,s:[{r:'270/2020-2021',e:'2023-12-14'}]},
-{i:109,n:'THE HOSPITAL SUPERINTENDENT,Government District Headquarters Hospital, Kallakuri',l:1,s:[{r:'274/2020-2021',e:'2024-01-19'}]},
-{i:110,n:'THE PRINCIPAL,GOVERNMENT LAW COLLEGE,ADMINISTRATIVE BLOCK-BUILDING,VILUPURAM.,',l:1,s:[{r:'275/2020-2021',e:'2024-01-19'}]},
-{i:111,n:'PRINCIPAL GOVERNMENT LAW COLLEGE,Acadamic & Admin Block For GOvernment Law Colle',l:1,s:[{r:'276/2020-2021',e:'2024-01-31'}]},
-{i:112,n:'PRINCIPAL GOVERNMENT LAW COLLEGE,Library Building Villupuram Cuddalore-605602,',l:1,s:[{r:'277/2020-2021',e:'2024-01-31'}]},
-{i:113,n:'The Collector Election Commission Of India,Near Collectrate Campus Villupuram Cu',l:1,s:[{r:'278/2020-2021',e:'2024-02-03'}]},
-{i:114,n:'N.RAMESH,11A/11C THANDAVARAYAN STREET, ARIYALUR 621704',l:1,s:[{r:'162/2016-2017',e:'2024-02-21'}]},
-{i:115,n:'M/s. S.Maharaja, Pathirakadai & Furnitures,1-A, Vilangara Street, Ariyalur 62170',l:1,s:[{r:'165/2016-2017',e:'2024-03-16'}]},
-{i:116,n:'Tamilnadu Medical Services Corporation Limited (District Drug Warehouse),Old Eye',l:1,s:[{r:'281/2020-21',e:'2024-03-29'}]},
-{i:117,n:'Tamilnadu Medical Services Corporation Limited (District Drug Warehouse),T.S.No.',l:1,s:[{r:'282/2020-2021',e:'2024-04-04'}]},
-{i:118,n:'Mr. Gnanakumar, Mr. Senthilnathan and Mr. Baskaran and others,Door No. 55, Kamal',l:1,s:[{r:'283/2021-2022',e:'2024-04-15'}]},
-{i:119,n:'R.Neethimannan,Sr.No:47/15,16,17, Perumulai Road, Tittagudi, Cuddalore Dist-6061',l:1,s:[{r:'284/2021-2022',e:'2024-05-03'}]},
-{i:120,n:'Mrs. Jegathambal,w/O.Ramaswamy, ward:7,kalaivani Nagar,Pudukkudian Santhu, Thitt',l:1,s:[{r:'285/2021-2022',e:'2024-05-11'}]},
-{i:121,n:'M/s. Auroville Foundations,No.(SunShip) Vanur Tk, Villupuram Dist 605 101',l:1,s:[{r:'289/2021-2022',e:'2024-08-09'}]},
-{i:122,n:'M/s. Auroville Foundations,South Block Kalpana) Vanur Tk, Villupuram Dist - 6051',l:1,s:[{r:'290/2021-2022',e:'2024-08-09'}]},
-{i:123,n:'M/s. Auroville Foundations,Vanur Tk, Villupuram Dist &ndash; 605 101.',l:1,s:[{r:'291/2021-2022',e:'2024-08-09'}]},
-{i:124,n:'M/s. Auroville Foundations,No.( Admin Buliding),Vanur Tk, Villupuram Dist,',l:1,s:[{r:'292/2021-2022',e:'2024-08-09'}]},
-{i:125,n:'M/s. Auroville Foundations,No.(Dominique Darr Center for Arts), Vanur Tk, Villup',l:1,s:[{r:'293/2021-2022',e:'2024-08-09'}]},
-{i:126,n:'Sumangali Silks, Jawans Bhavan Building,Lawrance Road, Cuddalore',l:2,s:[{b:'A',r:'106/2015-2016',e:'2024-08-23'},{b:'B',r:'107/2015-2016',e:'2024-08-23'}]},
-{i:127,n:'Dr. T. Manimaran,Aniruth Hospital, SF.No. 541/11, Near GH, Benny House Street, A',l:1,s:[{r:'297/2021-2022',e:'2024-09-22'}]},
-{i:128,n:'D.P. Thangadurai, Kattumannar Koil,Katchery Street, Kattumannar koil,',l:1,s:[{r:'149/2016-2017',e:'2024-10-05'}]},
-{i:129,n:'Assistant Executive Engineer, Electrical sub division,Cuddalore,District Munisif',l:1,s:[{r:'184/2017-18',e:'2024-10-25'}]},
-{i:130,n:'M/s.Ramkamal Property Developers,Ward 7, Block No. 6, T.S.No. 228/2A, 2B, 2C, Ne',l:1,s:[{r:'298/2021-2022',e:'2024-10-26'}]},
-{i:131,n:'The Project Director,DRDA Master Complex Building Collectorate, Near Forest Offi',l:1,s:[{r:'299/2021-2022',e:'2024-10-26'}]},
-{i:132,n:'PIRAIYON S,TS.NO.1784/1A3A Railway over bridge road Soorappanayakkan chavadi Cud',l:1,s:[{r:'185/2017-2018',e:'2024-11-01'}]},
-{i:133,n:'The Principal,New Government Polytechnic College, Kooduveli, kattumannarkoil, Cu',l:1,s:[{r:'303/2021-2022',e:'2024-11-09'}]},
-{i:134,n:'A.P. NARAYANASAMY CHETTIAR JAVULI STORES,ANAND, MAHALAKSHMI DOOR NO.19A, M.P.KOI',l:1,s:[{r:'L1075/2013-14',e:'2024-12-01'}]},
-{i:135,n:'The Dean,Lift No. 4, Admin Block - Back Side North Lift New Government Medical C',l:1,s:[{r:'305/2021-2022',e:'2024-12-07'}]},
-{i:136,n:'The Dean,Lift No. 2, Admin Block - Main Entrance North Side, New Government Medi',l:1,s:[{r:'306/2021-2022',e:'2024-12-07'}]},
-{i:137,n:'The Dean,Lift No. 1, Admin Block Main Entrance South Side, New Government Medica',l:1,s:[{r:'307/2021-2022',e:'2024-12-07'}]},
-{i:138,n:'The Dean,Lift No. 3, Admin Block - Back Side South Lift, New Government Medical ',l:1,s:[{r:'308/2021-2022',e:'2024-12-07'}]},
-{i:139,n:'The Secretary,Agriculture Marketing Committee Building,Vadakku Mathavi Road, Gan',l:1,s:[{r:'309/2021-2022',e:'2024-12-07'}]},
-{i:140,n:'SHEIK MOHIDEEN,SM Tower, Lodge and complex, salem main road, kallakurichi',l:1,s:[{r:'21/2010-2011',e:'2024-12-08'}]},
-{i:141,n:'GRK Theatre Complex, C/o Sumangali Silks,GRK Theatre Complex, C/o Sumangali Silk',l:1,s:[{r:'15/2016-2017',e:'2024-12-15'}]},
-{i:142,n:'ARIYALUR GOLDEN HOSPITAL PVT LTD,81A, PERIYAR NAGAR MAIN ROAD, ARIYALUR - 621714',l:1,s:[{r:'562/2008-2009',e:'2024-12-19'}]},
-{i:143,n:'P.V. SHANMUGAM,SHANMUGAM JAVULI STORE, 5-A, MARKET STREET, ARIYALUR 621704',l:1,s:[{r:'117/2015-2016',e:'2024-12-20'}]},
-{i:144,n:'Chief Civil Surgeon,Government Hospital, Panruti',l:1,s:[{r:'310/2021-2022',e:'2024-12-21'}]},
-{i:145,n:'Sumangali Silks,Sumangali Silks, No 89, Lawrance Road, Cuddalore',l:1,s:[{r:'5/2007-2008',e:'2024-12-26'}]},
-{i:146,n:'P.S.RANGAMANNAR,DOOR NO.15,17, PERUMAL KOIL SANNATHI STREET, TINDIVANAM',l:1,s:[{r:'38/11-12',e:'2025-01-09'}]},
-{i:147,n:'M.Swaminathan No.5, SowdambigaiNagar, Cuddalore',l:1,s:[{r:'119/2015-2016',e:'2025-01-13'}]},
-{i:148,n:'Registrar,Sastri Hall, Annamalai University,',l:1,s:[{r:'1/2005-2006',e:'2025-01-31'}]},
-{i:149,n:'Registrar,VC Bungalow, Annamalai University',l:1,s:[{r:'2/2005-2006',e:'2025-01-31'}]},
-{i:150,n:'THE THASILDAR,KALLAKURICHI TALUK OFFICE, KALLAKURICHI DISTRICT,KALLAKURICHI - 60',l:1,s:[{r:'311/2021-2022',e:'2025-02-01'}]},
-{i:151,n:'DR.SOWMINI,M/S.HOTEL SADHABISHEGAM ,D.NO.6/18-A , SANNATHI STREET ,THIRUKADAIYUR',l:1,s:[{r:'03/2007-2008',e:'2025-02-07'}]},
-{i:152,n:'Sai specialty Hospital,7/K2 Rajanagar kallakurichi,',l:1,s:[{r:'161/2016-2017',e:'2025-02-16'}]},
-{i:153,n:'The Assistant Commissioner,No.60, Mohan Singh Street, Cuddalore',l:1,s:[{r:'312/2021-2022',e:'2025-02-17'}]},
-{i:154,n:'Dr. R. Saravanan, Hotel Radhai Anna Nagar Main Road, Kallakuruchi',l:1,s:[{r:'163/2016-2017',e:'2025-02-21'}]},
-{i:155,n:'Hasina Begum,Ansari Hospital Naganathar Street',l:1,s:[{r:'5/2007-08',e:'2025-02-25'}]},
-{i:156,n:'Bonjour Bonheur Ocean Spray,No.7,8,9, ECR Main Road, Manjakuppam, Tindivanam TK',l:4,s:[{b:'A',r:'27/2010-11',e:'2025-02-27'},{b:'B',r:'28/2010-11',e:'2025-02-27'},{b:'C',r:'29/2010-11',e:'2025-02-27'},{b:'D',r:'30/2010-11',e:'2025-02-27'}]},
-{i:157,n:'THE COLLECTOR OFFICE,Villupuram District, Villupuram - 605602',l:1,s:[{r:'314/2021-2022',e:'2025-03-03'}]},
-{i:158,n:'The Dean,CRRI - Female Quarters, New Government Medical College and Hospital, Si',l:2,s:[{b:'A',r:'315/2021-2022',e:'2025-03-06'},{b:'B',r:'316/2021-2022',e:'2025-03-06'}]},
-{i:159,n:'The Dean, Government Kamaraj Hospital, Chidambaram,Government Kamaraj Hospital, ',l:1,s:[{r:'123/2015-2016',e:'2025-03-17'}]},
-{i:160,n:'The Dean,Hostel for Students (286 Boys ) Government Medical College and Hospital',l:2,s:[{b:'A',r:'325/2021-2022',e:'2025-03-23'},{b:'B',r:'326/2021-2022',e:'2025-03-23'}]},
-{i:161,n:'The Dean,Hostel for Students (286 Girls ) Government Medical College and Hospita',l:2,s:[{b:'A',r:'327/2021-2022',e:'2025-03-23'},{b:'B',r:'328/2021-2022',e:'2025-03-23'}]},
-{i:162,n:'P. GANESAN,PGM COMPLEX, ARIYALUR',l:2,s:[{b:'A',r:'330/2022-2023',e:'2025-04-10'},{b:'B',r:'331/2022-2023',e:'2025-04-10'}]},
-{i:163,n:'Prasad Kumar, Tindivanam Pondy Main Road, Tindivanam TK, Villupuram Dist',l:3,s:[{b:'A',r:'193/2018-19',e:'2025-04-24'},{b:'B',r:'194/2018-19',e:'2025-04-24'},{b:'C',r:'195/2018-19',e:'2025-04-24'}]},
-{i:164,n:'THE THASILDAR,KALVARAYAN MALAI TALUK OFFICE, KALVARAYAN MALAI KALLAKURICHI DISTR',l:1,s:[{r:'332/2022-2023',e:'2025-04-24'}]},
-{i:165,n:'DR G ATHMALINGAM MEDICAL AND EDUCATIONAL TRUST,PRG HOSPITAL,NO.85,THIRUVANNAMALI',l:1,s:[{r:'167/2017-2018',e:'2025-05-03'}]},
-{i:166,n:'Ameer Traders,Kumbakonam Main Road, Pownammbal Nagar, Vadakuthu Village, Gandhi ',l:1,s:[{r:'128/2016-2017',e:'2025-05-25'}]},
-{i:167,n:'DR.S.ABUBAKKAR,M/S.S.A.HOSPITAL MAIN ROAD MURARBADU, SANKARAPURAM T.K, KALLAKURI',l:1,s:[{r:'197/2018-2019',e:'2025-05-29'}]},
-{i:168,n:'G.RAMESH & UMAMAHESWARI RAMESH,TS.NO.15/1B,BLOCK-15,WARDF, KAVERIPAKKAM VILLAGE,',l:1,s:[{r:'196/2018-2019',e:'2025-05-29'}]},
-{i:169,n:'The Dean,Government Villupuram Medical College and Hospital',l:1,s:[{r:'344/2022-2023',e:'2025-06-05'}]},
-{i:170,n:'R MADHAN KUMAR,SF No 282/2A23 old SF No 416/4 B Mettu Street ,Elambalur Road, Pe',l:1,s:[{r:'345/2022-2023',e:'2025-06-05'}]},
-{i:171,n:'Dr.K.SARAVANAN,saravana hospital, Block no.32 Gundu salai utharamanickam street ',l:1,s:[{r:'60/13-14',e:'2025-06-09'}]},
-{i:172,n:'The District Munsif,Combined Court Building, Sankarapuram, Kallakurichi,,',l:1,s:[{r:'350/2022-2023',e:'2025-06-14'}]},
-{i:173,n:'District collector,District collector collectorate building cuddalore',l:2,s:[{b:'A',r:'101/2015-16',e:'2025-06-17'},{b:'B',r:'102/2015-16',e:'2025-06-17'}]},
-{i:174,n:'Nallappa Silks,Nallappa Silks, No.10, Salem Main Road, Kallakurichi',l:1,s:[{r:'33/2011-12',e:'2025-06-20'}]},
-{i:175,n:'S.Venkatesan, SRS Shopping Mall, Ariyalur',l:1,s:[{r:'201/2018-2019',e:'2025-06-21'}]},
-{i:176,n:'PERSONAL ASSISTANT TO COLLECTOR CUDDALORE (GENERAL),Collectorate Complex, Cuddal',l:1,s:[{r:'354/2022-2023',e:'2025-06-28'}]},
-{i:177,n:'Suba Valli Vilas,No. 61, 62, Lawrence Road, Thirupapuliyur, Cuddalore - 606002',l:1,s:[{r:'1/2006-07',e:'2025-07-06'}]},
-{i:178,n:'E.S.S.M. EDUCATIONAL AND CHARITABLE TRUST,E.S.NAGAR,NO:3/249-B,NH-45,CHENNAI TRU',l:1,s:[{r:'356/L/F/CUD/2022-2023',e:'2025-07-13'}]},
-{i:179,n:'DR.K.ANBUCHEZHIAN & S.NALINI,No.707, R.S.NO:44/4D4, JUNCTION ROAD, VRIDHACHALAM',l:1,s:[{r:'104/2015',e:'2025-08-02'}]},
-{i:180,n:'The Dean,C and D Type Quarters - North Corner Lift Government Medical College an',l:2,s:[{b:'A',r:'361/2022-2023',e:'2025-08-04'},{b:'B',r:'360/2022-2023',e:'2025-08-04'}]},
-{i:181,n:'Cheif medical officer,Taluk head quarter hospital, kattumannar koil, cuddalore',l:1,s:[{r:'79/2014-15',e:'2025-08-06'}]},
-{i:182,n:'Govt Head Quarter Hosptial, Dialysis Centre Building, Hospital Road, Cuddalore-0',l:1,s:[{r:'181/2017-2018',e:'2025-08-30'}]},
-{i:183,n:'Dr. R.Govindasamy,Chandra Hospital, No.835, Junction Road, Vridhachalam, Cuddalo',l:1,s:[{r:'137/2016-17',e:'2025-08-31'}]},
-{i:184,n:'Sabari Stores Pvt Ltd,No.168, Cuddalore Main Road, Virudhachalam',l:3,s:[{b:'A',r:'364/2022-2023',e:'2025-09-07'},{b:'B',r:'365/2022-2023',e:'2025-09-07'},{b:'C',r:'366/2022-2023',e:'2025-09-07'}]},
-{i:185,n:'CR. Jayashankar,Jayapriya Guest House, No.14/1, Kuthusi Gurusamy Street, Thirupa',l:1,s:[{r:'16/2010-11',e:'2025-09-12'}]},
-{i:186,n:'assistant executive engineer,new court building tittagudi, lift no.83',l:1,s:[{r:'107/2015-16',e:'2025-09-13'}]},
-{i:187,n:'assistant executive engineer,new court building tittagudi, lift no.84',l:1,s:[{r:'107/2015-16',e:'2025-09-13'}]},
-{i:188,n:'The principal District Judge,combined district court building, cuddalore',l:1,s:[{r:'66/2013-14',e:'2025-09-18'}]},
-{i:189,n:'C.R. Jayashankar,Hotel Jayapriya, Panruti Main Road, Vadulur - 607303',l:1,s:[{r:'145/2016-17',e:'2025-09-20'}]},
-{i:190,n:'A. Suresh,SF.No.169/1A1, 1A2, 1B1, Vathistapuram Road Street, Vathistapuram Vill',l:1,s:[{r:'370/2022-2023',e:'2025-10-10'}]},
-{i:191,n:'K. Karunanethi,S.F.No:356/10A2A,356/10A2B, Kandamanadi Village, Koliyanur Pancha',l:1,s:[{r:'374/2022-2023',e:'2025-10-25'}]},
-{i:192,n:'Mr.E.Marconi,Marconi grand Tower,No.120 A,pidari mela theru,periya kadai street,',l:1,s:[{r:'371/2022-2023',e:'2025-10-27'}]},
-{i:193,n:'V. Chandra and 4 Others,Customer Lift No.2,T.S.No.1782/2C, Ward - 5, Block - 47,',l:3,s:[{b:'A',r:'375/2022-2023',e:'2025-11-10'},{b:'B',r:'376/2022-2023',e:'2025-11-10'},{b:'C',r:'377/2022-2023',e:'2025-11-10'}]},
-{i:194,n:'S.Satheesh Raj,Plot No.22, Gandhi Nagar, Vadakuthu, Cuddalore-607308',l:1,s:[{r:'378/2022-2023',e:'2025-11-17'}]},
-{i:195,n:'EXECUTIVE ENGINEER / ELECTRICAL,CENTRAL CONTROL ROOM KUTTALAM GAS TURBINE POWER ',l:1,s:[{r:'17/2006-07',e:'2025-11-23'}]},
-{i:196,n:'K.Shanmugam,RASI FLATS,44/19 EAST CAR STREET CHIDAMBARAM',l:1,s:[{r:'31/2001-2002',e:'2025-11-28'}]},
-{i:197,n:'THE DEAN,Lift-2, Government Medical College and Hospital, Kallakurichi- 606202',l:1,s:[{r:'385/2022-2023',e:'2025-12-05'}]},
-{i:198,n:'Director RGCA Karaimedu,Pathogen Screening Laboratory RGCA Head Quarters, Sirkal',l:1,s:[{r:'386/2022-2023',e:'2025-12-07'}]},
-{i:199,n:'M/S A.V.R TOWER,NO 4 BHARATHI ROAD CUDDALORE PINCODE:607001',l:1,s:[{r:'2/1999-2000',e:'2025-12-11'}]},
-{i:200,n:'THE PRINCIPAL DISTRICT JUDGE,DISTRICT COURT BUILDING,VILLUPURAM',l:2,s:[{b:'A',r:'227/2019-20',e:'2025-12-19'},{b:'B',r:'228/2019-20',e:'2025-12-19'}]},
-{i:201,n:'K.B.Viswanathan,Maniam Cloth Store, RS.No. 214/10A, South Main Road, Sethiathope',l:1,s:[{r:'226/2019-20',e:'2025-12-19'}]},
-{i:202,n:'R.Subhasri,M/S.Rainbow Plazaa Complex,Door No.5,ward No.3,TS. No. 31,Government ',l:2,s:[{b:'A',r:'389/2022-2023',e:'2025-12-25'},{b:'B',r:'390/2022-2023',e:'2025-12-25'}]},
-{i:203,n:'The Dean,Hospital Block - Main Entrance Government Medical College and Hospital,',l:2,s:[{b:'A',r:'392/L/F/CUD/2022-2023',e:'2025-12-28'},{b:'B',r:'396/2022-2023',e:'2025-12-28'}]},
-{i:204,n:'The Dean,Hospital Block - Main Entrance, Government Medical College and Hospital',l:2,s:[{b:'A',r:'393/2022-2023',e:'2025-12-28'},{b:'B',r:'395/2022-2023',e:'2025-12-28'}]},
-{i:205,n:'The Dean,Hospital Block Ramp Side Lift No. 4 Government Medical College and Hosp',l:1,s:[{r:'394/2022-2023',e:'2025-12-28'}]},
-{i:206,n:'V.R.S.College of Engineering and Technology,Sr.No: 185/3,185/4,185/16, Arasur, V',l:1,s:[{r:'391/L/F/CUD/2022-2023',e:'2026-01-08'}]},
-{i:207,n:'ASSISI HOSPITAL,Vadakurumbur Road, RS.No.83/1,83/2,Eraiyur Village, Ulundurpet T',l:1,s:[{r:'398/L/F/CUD/2022-2023',e:'2026-01-30'}]},
-{i:208,n:'Hotel Afsan Plaza, No.2, Venugopal Pillai Street, Chidambaram',l:1,s:[{r:'4/1999-2000',e:'2026-02-09'}]},
-{i:209,n:'AKT. Mahendran,RS.No. 308/8A, Rajambal Nagar, Salem Main Road, Kallakurichi, Vil',l:1,s:[{r:'232/2019-2020',e:'2026-02-18'}]},
-{i:210,n:'The Dean,New Government Hospital, Block - B (East), Ariyalur - 621704',l:1,s:[{r:'399/2022-2023',e:'2026-03-12'}]},
-{i:211,n:'The Dean,New Government Hospital, Block - B (West), Ariyalur - 621704',l:1,s:[{r:'400/2022-2023',e:'2026-03-12'}]},
-{i:212,n:'S.SENGUTTUVAN(SKS HOSPITAL), No.452/10,No.61,Trichy Main Road,Venkadesapuram, Pe',l:1,s:[{r:'236/2019-2020',e:'2026-03-15'}]},
-{i:213,n:'The Dean,Hospital Block - South Entrance Lift No.3, Government Medical College a',l:1,s:[{r:'401/2022-2023',e:'2026-03-19'}]},
-{i:214,n:'The Secretary,Theivanai Ammal College for Women (Autonomous), Chennai- Trichy Tr',l:1,s:[{r:'402/2022-2023',e:'2026-03-27'}]},
-{i:215,n:'V.Bbulal,Sr.No;362/B34A1 Ts.No: 271, 272 Kamraj Street, Villupuram',l:1,s:[{r:'403/L/F/CUD/1680504389',e:'2026-03-30'}]},
-{i:216,n:'V. Chandra and 4 Others,T.S.No.1782/2C, Ward - 5, Block - 47, Tirupadiripuliyur',l:1,s:[{r:'406/2023-24',e:'2026-04-12'}]},
-{i:217,n:'Circuit House Building,Master Plan Complex Viluppuram, Viluppuram District - 605',l:1,s:[{r:'404/2023-24',e:'2026-04-23'}]},
-{i:218,n:'M.Ramesh,T.S.No: 5574/1,& 2B, Nellikuppam Main Road, Cuddalore-607001',l:1,s:[{r:'405/2023-24',e:'2026-05-01'}]},
-{i:219,n:'The Dean,New Government Hospital, Block - A (West), Ariyalur - 621704',l:1,s:[{r:'408/2023-24',e:'2026-05-05'}]},
-{i:220,n:'The Dean,New Government Hospital, Block - C (East), Ariyalur - 621704,',l:3,s:[{b:'A',r:'407/2023-24',e:'2026-05-08'},{b:'B',r:'409/2023-24',e:'2026-05-08'},{b:'C',r:'410/2023-24',e:'2026-05-08'}]},
-{i:221,n:'DISTRICT FIRE OFFICE AND FIRE AND RESCUE SERVICE STATION CUM GARAGE AT CUDDALORE',l:1,s:[{r:'411/2023-24',e:'2026-05-14'}]},
-{i:222,n:'J. SUKUMAR GANDHI AND S. SUDHA,Ward No.5, Block-46, T.S.No.1768 ROB Link Road (S',l:1,s:[{r:'412/2023-24',e:'2026-05-17'}]},
-{i:223,n:'Sangamithirai Multipurpose Hall,414/2B, Main Road, Thandavankulam, Sirkali Taluk',l:2,s:[{b:'A',r:'413/2023-24',e:'2026-05-22'},{b:'B',r:'414/2023-24',e:'2026-05-22'}]},
-{i:224,n:'M/s CK College of Engineering,Jayaram Nagar, Chellanguppam, Cuddalore 607003',l:1,s:[{r:'415/2023-24',e:'2026-05-29'}]},
-{i:225,n:'The Dean,Government Medical College,BoysHostel,Manalmedu,Orathur,Nagapattinam',l:1,s:[{r:'417-418/2023-24',e:'2026-05-29'}]},
-{i:226,n:'S.ARUMUGAM,No.15, SEENIVASA NAGAR , JAYANKONDAM CHIDAMBARAM ROAD JAYANKONDAM',l:1,s:[{r:'419/2023-24',e:'2026-05-30'}]},
-{i:227,n:'Hotel Radha Pvt Ltd,No.16,Neyveli Township, Neyveli',l:1,s:[{r:'240/2020-2021',e:'2026-06-03'}]},
-{i:228,n:'THE DISTRICT COLLECTOR and CHAIRMAN,DRDA-District Collectrate Building,Nagapatti',l:1,s:[{r:'241/2020-2021',e:'2026-06-16'}]},
-{i:229,n:'The District Collector,The New Collectorete in Master Plan Complex Ariyalur',l:1,s:[{r:'L-131/2016-17',e:'2026-07-03'}]},
-{i:230,n:'Dr. P.Arunkumar,No.29, YMCA Colony, ALC Campus,Manjakuppam, Cuddalore',l:1,s:[{r:'421/2023-24',e:'2026-07-18'}]},
-{i:231,n:'M.Srividhaya,Door No:160A, East Car Street, Chidhambaram-608001',l:1,s:[{r:'420/2023-24',e:'2026-07-20'}]},
-{i:232,n:'V.Murugesan Murugesan Hospital,7/B, Sundara vinayagar Koil st,, Kallakurichi',l:1,s:[{r:'37/2011-2012',e:'2026-07-28'}]},
-{i:233,n:'Dr. V. Mariappan,Plot No:4,T.S.No:223/3,229,230, T.S.Ward:6, Block:9,Pudupalayam',l:1,s:[{r:'422/2023-24',e:'2026-09-11'}]},
-{i:234,n:'SHREE SAI MULTI SPECIALITY HOSPITAL,TINDIVANAM ROAD OPP TO PANJABI DHABA OORANIT',l:1,s:[{r:'423/2023-24',e:'2026-09-25'}]},
-{i:235,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Gi',l:1,s:[{r:'246/2020-2021',e:'2026-09-29'}]},
-{i:236,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Bo',l:1,s:[{r:'247/2020-2021',e:'2026-09-29'}]},
-{i:237,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (OP',l:1,s:[{r:'248/2020-2021',e:'2026-09-29'}]},
-{i:238,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (OP',l:1,s:[{r:'249/2020-2021',e:'2026-09-29'}]},
-{i:239,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (OP',l:1,s:[{r:'250/2020-2021',e:'2026-09-29'}]},
-{i:240,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Ac',l:1,s:[{r:'251/2020-2021',e:'2026-09-29'}]},
-{i:241,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Ac',l:1,s:[{r:'252/2020-2021',e:'2026-09-29'}]},
-{i:242,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (A-',l:1,s:[{r:'253/2020-2021',e:'2026-09-29'}]},
-{i:243,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (B-',l:1,s:[{r:'254/2020-2021',e:'2026-09-29'}]},
-{i:244,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (C-',l:1,s:[{r:'255/2020-2021',e:'2026-09-29'}]},
-{i:245,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (D-',l:1,s:[{r:'256/2020-2021',e:'2026-09-29'}]},
-{i:246,n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (E-',l:1,s:[{r:'257/2020-2021',e:'2026-09-29'}]},
-{i:247,n:'P.S.Sabarathinam 12,Somasundara mudhaliyar Street, Chidambaram',l:1,s:[{r:'20/2010-2011',e:'2026-10-13'}]},
-{i:248,n:'M/s.New KVM Jewellers,Sr.No:426/7,8A,8B, D.No: 35,36,37,38, Keezh Agrahara Stree',l:1,s:[{r:'259/2020-2021',e:'2026-10-23'}]},
-{i:249,n:'NEW KVM JEWELLERS, Sr.No:426/7,8A,8B, D.No: 35,36,37,38, Keezh Agrahara Street, ',l:1,s:[{r:'260/2020-2021',e:'2026-10-23'}]},
-{i:250,n:'The Dean,A Type Quatres - South Corner Lift Government Medical College and Hospi',l:2,s:[{b:'A',r:'424/2023-24',e:'2026-10-30'},{b:'B',r:'425/2023-24',e:'2026-10-30'}]},
-{i:251,n:'SRI KANNIKA PAREMESWARI STORE, Chennai- Kumbakonam Main Road, Vadakuthu Village,',l:3,s:[{b:'A',r:'262',e:'2026-11-11'},{b:'B',r:'263/2020-21',e:'2026-11-11'},{b:'C',r:'264/2020-21',e:'2026-11-11'}]},
-{i:252,n:'R.Sindhu and Mr S.Sekar, Complex, SF No 560/5,562/2,Opp to Neyveli Arch GateVada',l:1,s:[{r:'265/2020-2021',e:'2026-11-18'}]},
-{i:253,n:'The Divisional Railway Manager,Electrical General service, Tiruchirapalli Divisi',l:2,s:[{b:'A',r:'426/2023-24',e:'2026-11-20'},{b:'B',r:'427/2023-24',e:'2026-11-20'}]},
-{i:254,n:'CHIEF CIVIL SURGEON MEDICAL OFFICER,GOVERNMENT PERIYAR HOSPITAL, HOSPITAL ROAD, ',l:2,s:[{b:'A',r:'267/2020-2021',e:'2026-11-22'},{b:'B',r:'268/2020-2021',e:'2026-11-22'}]},
-{i:255,n:'K.Sarangapani,503-A88, 15/1 (15/1A), 503/2-A87,15/4A1A Thillai Nagar, VADAKUTHU ',l:1,s:[{r:'428/2023-24',e:'2026-11-27'}]},
-{i:256,n:'The Divisional Railway Manager,Electrical General service,Tiruchirapalli Divisio',l:2,s:[{b:'A',r:'431/2023-24',e:'2026-12-11'},{b:'B',r:'432/2023-24',e:'2026-12-11'}]},
-{i:257,n:'The collector,Collector Office, Master Complex, Perambalur',l:1,s:[{r:'269/2020-2021',e:'2026-12-14'}]},
-{i:258,n:'M Ramesh,Shopping Mall, SF.No: No:83/2B, 2C, Door No. 7, Bharathi Road, Cuddalor',l:3,s:[{b:'A',r:'428/2023-24',e:'2026-12-20'},{b:'B',r:'429/2023-24',e:'2026-12-20'},{b:'C',r:'430/2023-24',e:'2026-12-20'}]},
-{i:259,n:'THE DISTRICT JUDGE,COMBINED C0URT COMPOUND BUILDING,PUBLIC OFFICE ROAD,NAGAPATTI',l:2,s:[{b:'A',r:'272/2020-2021',e:'2027-01-18'},{b:'B',r:'273/2020-2021',e:'2027-01-18'}]},
-{i:260,n:'R.Geetha,Door No.281/128,279/127,277/126,275/125,T.S.No.71,72,73,74,R.S.No.280/1',l:1,s:[{r:'271/2020-2021',e:'2027-01-18'}]},
-{i:261,n:'Mr.MURUKESHBABU S/O. SURENDRABABU,Ward - A, Block - 16, New T.S.No.84 and 85, (O',l:2,s:[{b:'A',r:'434/2023-24',e:'2027-01-19'},{b:'B',r:'435/2023-24',e:'2027-01-19'}]},
-{i:262,n:'Chief Medical Officer,Government Taluk Hospital, Trauma Care Building, Kurinjipa',l:1,s:[{r:'433/2023-24',e:'2027-01-22'}]},
-{i:263,n:'Sri Kannika Parameswari Store,No.91, Kamarajar Street',l:1,s:[{r:'436/2023-24',e:'2027-01-30'}]},
-{i:264,n:'S. JEEVANTHAM,RAJAJI NAGAR ARIYALUR 621713',l:1,s:[{r:'160/2016-2017',e:'2027-02-01'}]},
-{i:265,n:'P.MURUGESAN,No.105,105/1,105/2, VATHISTAPURAM MAIN ROAD THITTAGUDI',l:1,s:[{r:'437/2023-24',e:'2027-02-05'}]},
-{i:266,n:'Krishna Hospital and Research Foundation, Thottapattu Village, Nellikuppam Main ',l:1,s:[{r:'279/2020-2021',e:'2027-02-08'}]},
-{i:267,n:'K.Masudha Beham,No.66A1A, 2nd Street, Alagappa Nagar',l:1,s:[{r:'440/2023-24',e:'2027-02-08'}]},
-{i:268,n:'Dr.Pravinkumar,No.270/13, 4th Cross, Periyar Nagar',l:1,s:[{r:'439/2023-24',e:'2027-02-08'}]},
-{i:269,n:'S.G. AJITHKUMAR,No.Plot No: 4, 13 AT Sivaraman Nagar,Kondur Village, Cuddalore D',l:1,s:[{r:'438/2023-24',e:'2027-02-14'}]},
-{i:270,n:'Dr. R. Krishnamurthi,19, R.S. No.481/1, T.S. No. 1, Ward-A, BlockNo. 16, Trichy ',l:1,s:[{r:'441/2023-24',e:'2027-02-22'}]},
-{i:271,n:'Mr.Manoj, J.Pattel,No.Ward No.5, Block No.46, T.S.No.1780/2B, Thiruppapuliyur Vi',l:1,s:[{r:'442/2023-24',e:'2027-02-26'}]},
-{i:272,n:'District Collector,S.F.No.116/2, 158/3,163,164/2,3,1c,165/3E2,166/1J10B,Mannampa',l:4,s:[{b:'A',r:'443/2023-24',e:'2027-02-28'},{b:'B',r:'444/2023-24',e:'2027-02-28'},{b:'C',r:'445/2023-24',e:'2027-02-28'},{b:'D',r:'446/2023-24',e:'2027-02-28'}]},
-{i:273,n:'SELVAPRABHA92,94,96 BHARATHA MATHA NAGAR PATTANUR VANUR TK VILLUPURAM DIST',l:1,s:[{r:'456/2024-25',e:'2027-03-04'}]},
-{i:274,n:'VAMSHA RETAIL VENTURES PRIVATE LIMITED,BLOCK NO .10&amp;amp;21 ,MAHATMA GANDHI R',l:2,s:[{b:'A',r:'447/2023-24',e:'2027-03-07'},{b:'B',r:'448/2023-24',e:'2027-03-07'}]},
-{i:275,n:'Principal District Judge,Combined Court Building, Villupuram.,',l:1,s:[{r:'280/2020-2021',e:'2027-03-09'}]},
-{i:276,n:'ABDUL HAJA,NO.277/18B2A,277/18B2A1, VILANGARA STREET, SENTHURAI ROAD, RAILWAY ST',l:1,s:[{r:'CUD449/L/F/2023-24',e:'2027-03-13'}]},
-{i:277,n:'Dhanalakshmi Srinivasan Institute of Medical Sciences and Hospital,Aranarai(Sout',l:4,s:[{b:'A',r:'CUD450/L/F/2023-24',e:'2027-03-18'},{b:'B',r:'CUD451/L/F/2023-24',e:'2027-03-18'},{b:'C',r:'CUD452/L/F/2023-24',e:'2027-03-18'},{b:'D',r:'CUD453/L/F/2023-24',e:'2027-03-18'}]},
-{i:278,n:'Sri Kannika Parameswari Store,No.91, Kamarajar Street, villupuram',l:1,s:[{r:'CUD454/2023-24',e:'2027-03-20'}]},
-{i:279,n:'G.Geetha,Plot No.28, Saraswathi Nagar, Thirupapuliyur, Cuddalore City Municipal ',l:1,s:[{r:'CUD455/L/F/2023-24',e:'2027-03-27'}]},
-{i:280,n:'Principal Subordinate Judge,Principal Subordinate Judge Court Building, Mayiladu',l:1,s:[{r:'124/2015-16',e:'2027-03-28'}]}
+const D=[
+{i:1,t:'P',n:'Annamalai University Annamalai Nagar, Chidambaram',l:5,s:[{r:'16/2001-02',e:'2007-06-13'}]},
+{i:2,t:'P',n:'Registrar  Annamalai University, Annamalai Nagar, Chidambaram',l:5,s:[{r:'18/2001-02',e:'2007-11-26'}]},
+{i:3,t:'P',n:'Tmt.Vimala, Sugam Appartments Vimala Garden, East Car St,Annamalai Nagar, Chidambaram',l:1,s:[{b:'A',r:'1/2007-18',e:'2008-07-08'}]},
+{i:4,t:'P',n:'A. Sethuraman AVS Tower,15, V.O.C. Street, Villupuram',l:1,s:[{b:'A',r:'1/1998-99',e:'2008-11-30'}]},
+{i:5,t:'P',n:'M.S. Maniam Sri Krishna Building,1563 , Big Bazar, Nagapttinam',l:1,s:[{b:'A',r:'15/2001-02',e:'2008-12-12'}]},
+{i:6,t:'P',n:'R. Veeramani R. Veeramani,Plot No.5-10,Chinnaya Avenue, Chidambarm',l:1,s:[{b:'A',r:'6/2009-10',e:'2011-01-04'}]},
+{i:7,t:'P',n:'S.Shajahan,Pramalaya Apartment Flat No.G3,Door No.131, kanaga sabai Nagar, , Chidambaram',l:1,s:[{b:'A',r:'9/2009-10',e:'2011-03-09'}]},
+{i:8,t:'P',n:'Hotel Akshaya 17-18 East Car Street, Chidambaram',l:1,s:[{b:'A',r:'7/1998-99',e:'2011-05-14'}]},
+{i:9,t:'P',n:'Ragas Apartment,  Opp to LIC Office, 52-B Durgam Road, Kallakurichi',l:1,s:[{b:'A',r:'1/2008-09',e:'2012-07-16'}]},
+{i:10,t:'P',n:'S.Manikam and M.Jayamani 189, Jothi Vallalar st, Salem Main Road, Kallakurichi, Kallakurichi',l:1,s:[{b:'A',r:'35/2011-12',e:'2012-07-28'}]},
+{i:11,t:'P',n:'Saradharam Temple view Appartment 9/11, Old No, 6,7,Theradikadai street, Chidambaram',l:1,s:[{b:'A',r:'2/2006-07',e:'2013-02-07'}]},
+{i:12,t:'P',n:'A.K.Natarajan & AK Mahesh  D.No:40 to 43,North Car street, Chidambaram, Chidambaram',l:2,s:[{r:'44/2011-12',e:'2013-03-29'}]},
+{i:13,t:'P',n:'New Dhanalakshmi Stores 42, Super Bazar, Perambalur, Perambalur',l:1,s:[{b:'A',r:'L880/2012-13',e:'2013-04-22'}]},
+{i:14,t:'P',n:'Dr. T.Vasudevan, Krishna Iyer Apt  Block-II,  21,Ranga Rao Street,Seetha ram Nagar , Cuddalore',l:1,s:[{b:'A',r:'02/2004-05',e:'2013-06-01'}]},
+{i:15,t:'P',n:'Dr. T.Vasudevan,Krishna Iyer Apt Block-I, 21,Ranga Rao Street, Seetharam Nagar  , Cuddalore',l:1,s:[{b:'A',r:'02/2004-05',e:'2013-06-16'}]},
+{i:16,t:'P',n:'V.Kalavathi V.Kalavathi,Plot No.14, Pragannyagi Ammal Nagar, Cuddalore',l:1,s:[{b:'A',r:'05/2009-10',e:'2013-12-01'}]},
+{i:17,t:'P',n:'Dr. G.P. Sekar Sujatha Hospital,78, Nethaji Road, Cuddalore',l:1,s:[{b:'A',r:'15/2000-2001',e:'2014-01-11'}]},
+{i:18,t:'P',n:'A. K. Natarajan 155/3, Shree Rajeswari Nagar. Malar Avenue, Thurugam Rd.,, Kallakurichi',l:1,s:[{b:'A',r:'50/2012-13',e:'2014-03-26'}]},
+{i:19,t:'P',n:'R.Sethuraman & R.Kedarnathan and others  Narayanan st, Chidambaram , Chidambaram',l:1,s:[{b:'A',r:'43/2011-12',e:'2014-03-29'}]},
+{i:20,t:'P',n:'N.G. Manickam &  T.K.Vembu Block 13, Bharathidasan St,, Chidambaram',l:1,s:[{b:'A',r:'03/2009-10',e:'2014-08-11'}]},
+{i:21,t:'P',n:'V.Rajalakshmi,Vijaya Surya Hotel 4, North Kavarai st, Manjakuppam,, Cuddalore',l:1,s:[{b:'A',r:'63/2013-14',e:'2014-08-20'}]},
+{i:22,t:'P',n:'V.Maheswari 54,Kulathumettu Street, Kallakuruchi, Kallakurichi',l:1,s:[{b:'A',r:'64/13-14',e:'2014-09-09'}]},
+{i:23,t:'P',n:'S.Vimala   6/6A./6/7, Natarajapuram Road, Annamalai Nagar, , Chidambaram',l:2,s:[{r:'01/2009-10',e:'2014-12-22'}]},
+{i:24,t:'P',n:'S.Ravindran, Karpagam Stores,Big Bazar Street, Nagore, Nagai,.',l:1,s:[{b:'A',r:'21/2004-05',e:'2015-01-23'}]},
+{i:25,t:'P',n:'Dhanalakshmi Srinivasan Hotels Pvt ltd., Collector office Road, Palakkarai, Perambalur , Perambalur',l:1,s:[{b:'A',r:'1124/2014-15',e:'2015-04-09'}]},
+{i:26,t:'P',n:'C.K. Sivasubramanian Renuka Silks, thuraiyur Road, , Perambalur',l:1,s:[{b:'A',r:'1135/2014',e:'2015-05-01'}]},
+{i:27,t:'P',n:'O.M. Ansari No.6 Pazhayapattinam Road,Kottakuppam . , Vanur',l:1,s:[{b:'A',r:'46/2012-13',e:'2015-05-03'}]},
+{i:28,t:'P',n:'Kavidass Kavidass,218/A,Gandhi Bazzar, Gingee',l:1,s:[{b:'A',r:'76/2014-15',e:'2015-05-13'}]},
+{i:29,t:'P',n:'JPS Promotors, Sushil Apartments 11A Beach Road, Manjakuppam, Cuddalore',l:1,s:[{b:'A',r:'77/14-15',e:'2015-06-18'}]},
+{i:30,t:'P',n:'S.Sivakumar,122,123 East Car Street, Chidambaram',l:2,s:[{r:'19/2010-11',e:'2015-10-07'}]},
+{i:31,t:'P',n:'D Ravi Sankar Salem Main Road  ,Uaganakathan, Kallakaurichi',l:1,s:[{b:'A',r:'94/2015',e:'2016-02-25'}]},
+{i:32,t:'P',n:'K.Selvamani 199, Annagramam, Gandhi Nagar, Vadakkuthu, Kurinjipadi',l:1,s:[{b:'A',r:'52/13-14',e:'2016-04-04'}]},
+{i:33,t:'P',n:'The Collector office, Master Plan complex,  Master Plan Complex, Perambalur, Perambalur',l:2,s:[{b:'A',r:'73/2006',e:'2016-04-10'},{b:'B',r:'72/2006',e:'2016-04-16'}]},
+{i:34,t:'P',n:'SPA Silks No. 110C, Neyveli Road, , Vadalur',l:1,s:[{b:'A',r:'97/2015',e:'2016-04-14'}]},
+{i:35,t:'P',n:'Balaji Apartments  Mo. 1, Azhagappa Nagar, Manjakuppam, Cuddalore',l:1,s:[{b:'A',r:'126/2015',e:'2016-06-01'}]},
+{i:36,t:'P',n:'R. Venkat North Street, , Thirukoilur',l:1,s:[{b:'A',r:'101/2015',e:'2016-07-01'}]},
+{i:37,t:'P',n:'N. Ramuchettiyar S.No.864/3, North Street, Thirukoilur',l:1,s:[{b:'A',r:'102/2015-16',e:'2016-07-12'}]},
+{i:38,t:'P',n:'R.P. Prabhuram Seetharam Nagar, , Cuddalore',l:1,s:[{b:'A',r:'115/2015-16',e:'2016-11-08'}]},
+{i:39,t:'P',n:'Dr. Seetharaman & Vasantharaman 30-31 RS No. 434 /IPT Keelputhupet, Tindivanam Tk',l:1,s:[{b:'A',r:'01/2006-2007',e:'2016-12-04'}]},
+{i:40,t:'P',n:'Varadharajan & Malarvizhi The Grand white palace, Northe Car Street,, Sirkazhi',l:2,s:[{r:'120/2015-16',e:'2017-01-13'}]},
+{i:41,t:'P',n:'C. Vadivelu Rabindranath Tagore salai,, Neyveli',l:1,s:[{b:'A',r:'19/2015-16',e:'2017-05-13'}]},
+{i:42,t:'P',n:'B. Arunkumar, Marutham Builders Ward,7, Block-7, Pennaiyar Road, Manjakuppam, Cuddalore',l:1,s:[{b:'A',r:'130/2016-17',e:'2017-06-26'}]},
+{i:43,t:'P',n:'T.Latha, T.Vinothkumar 51, Salem Main Road, Kallakurichi, Kallakurichi',l:1,s:[{b:'A',r:'62/2013-14',e:'2017-08-04'}]},
+{i:44,t:'P',n:'M.Venkataparaneeswaran No.36, R.S. No.63/1 Eswaran Koil St.,Tindivanam.',l:1,s:[{b:'A',r:'48/2012-13',e:'2017-09-08'}]},
+{i:45,t:'P',n:'P.Seshadri P.Seshadri,Agasampet, Setharapet,, Vanur',l:1,s:[{b:'A',r:'70/2013',e:'2017-12-01'}]},
+{i:46,t:'P',n:'Palani .R Plot No.13,14,15.16, Chinnaiya Avenue, CBM, Chidambaram',l:1,s:[{b:'A',r:'71/2013-14',e:'2017-12-22'}]},
+{i:47,t:'P',n:'S. Sathishkumar, Mettupakkam Foundation (P) Ltd., Thirumanjana Veedi,Thiruvindalur, Mailaduthurai',l:2,s:[{r:'96/2015-16',e:'2018-03-24'}]},
+{i:48,t:'P',n:'R.Sudha, Bammaiar Palayam, Old Auroville Road, Oorachi, Vanur TK, Villupuram',l:1,s:[{b:'A',r:'172/2017-18',e:'2018-05-03'}]},
+{i:49,t:'P',n:'S.Ramamurthy, G.Vaidehi, No.6, Pragasam Street, Thiyagaraya nagar, Mayiladuthurai, Nagapattinam',l:1,s:[{b:'A',r:'174/2017-18',e:'2018-05-21'}]},
+{i:50,t:'P',n:'Dr. K. Dakshnamoorthy (Nagai Hospital) Nagai Hospital,3/134, Main road, Puthur, Nagai',l:1,s:[{b:'A',r:'1/2006-07',e:'2018-05-30'}]},
+{i:51,t:'P',n:'S.B.Samsudeen & Megaraj (Hotel Vasantham) Hotel Vasantham, 744,Kumbakonam Road, Panruti',l:1,s:[{b:'A',r:'4/2009-10',e:'2018-08-11'}]},
+{i:52,t:'P',n:'Ahmed Moideen, Salapalli street, Nagapattinam',l:1,s:[{b:'A',r:'182/2017-18',e:'2018-09-18'}]},
+{i:53,t:'P',n:'K.R. Pooranan,AERA Building  Rs.No. 9/3C2, 7/1 A2, Opp. to R.M.M.C.M , O.P. Main Road, Annamalai Nagar , Chidambaram',l:1,s:[{b:'A',r:'68/2013-14',e:'2018-10-08'}]},
+{i:54,t:'P',n:'Arthiya Clinic  99/9.Ganesanar Street, Ulundurpet., Ulundurpettai',l:1,s:[{b:'A',r:'69/13-14',e:'2018-11-03'}]},
+{i:55,t:'P',n:'VPN  Hotel   VPN Hotel Nethaji Road, Nagapttinam',l:1,s:[{b:'A',r:'19/2003-04',e:'2018-12-03'}]},
+{i:56,t:'P',n:'Hotel Dayalan, Narayanapillai Street , Mayiladuthurai',l:1,s:[{b:'A',r:'19/2006-07',e:'2018-12-30'}]},
+{i:57,t:'P',n:'PSR Sathiyamurthi, Hotel Sri Ranga,30-31 Rajaji Road, Panruti',l:1,s:[{b:'A',r:'8/2000-01',e:'2019-05-18'}]},
+{i:58,t:'P',n:'Mohamed Salik,Million Day Hotel& Lodge 150,151, Pattamangala st, Mayiladuthurai, Mayiladuthurai',l:3,s:[{r:'54/2013-14',e:'2019-06-04'}]},
+{i:59,t:'P',n:'Govt Head Quarter Hosptial , Hospital Road, Cuddalore-01',l:1,s:[{b:'A',r:'14/2001-02',e:'2019-07-03'}]},
+{i:60,t:'P',n:'V.Ragavan, Nalam Hospital, Chidambaram Main Road, Jayamkondam, Ariyalur',l:1,s:[{b:'A',r:'207/2018-19',e:'2019-09-04'}]},
+{i:61,t:'P',n:'Dr. P.V.Ramesh Vijay Polyclinic,217 Gandhi Road, Kallakurichi',l:1,s:[{b:'A',r:'2/200',e:'2019-11-05'}]},
+{i:62,t:'P',n:'The Secretary,Hi-tech Appartment, 177/95, West Car Street, Chidambaram - 608001',l:1,s:[{b:'A',r:'5/2004-05',e:'2020-03-25'}]},
+{i:63,t:'G',n:'The District Collector,The New Collectorate in Master Plan Complex Ariyalur',l:1,s:[{b:'A',r:'L-1118/2013-2014',e:'2021-03-16'}]},
+{i:64,t:'P',n:'RAMESH SILKS,6a,kachery road kallakurichi,',l:1,s:[{b:'A',r:'3/2008-2009',e:'2021-08-31'}]},
+{i:65,t:'P',n:'P.Gopinath,122A/1 Mahatma Gandhi Road, Gingee',l:1,s:[{b:'A',r:'156/2016-2017',e:'2021-11-16'}]},
+{i:66,t:'P',n:'Dr. K. Manimekalai, RS.No. 15/4A1A, Vadakuthu Village,chennai to kumbakonam road,Gandhi nagar,vadakuthu, Cuddalore',l:1,s:[{b:'A',r:'208/2018-19',e:'2021-11-26'}]},
+{i:67,t:'P',n:'Dr R. Poongodi,Pentagon Hospitals, 12, Sattaiappar East Street, Nagapattinam',l:1,s:[{b:'A',r:'2/2006-2007',e:'2021-11-28'}]},
+{i:68,t:'G',n:'THE SUB JUDGE,COMBINED COURT BUILDING, GINGEE',l:1,s:[{b:'A',r:'158/2016-17',e:'2022-01-04'}]},
+{i:69,t:'G',n:'THE SUB JUDGE,COMBINED COURT BUILDING GINGEE',l:1,s:[{b:'A',r:'159/2016-17',e:'2022-01-04'}]},
+{i:70,t:'G',n:'Medical Superintendent,Govt Medical college Hospital Mundiyambakkam Villupuram,',l:5,s:[{b:'A',r:'22/2010-11',e:'2022-01-27'},{b:'B',r:'23/2010-11',e:'2022-01-27'},{b:'C',r:'24/2010-11',e:'2022-01-27'},{b:'D',r:'25/2010-11',e:'2022-01-27'},{b:'E',r:'26/2010-11',e:'2022-01-27'}]},
+{i:71,t:'G',n:'The Dean,Govt Villupuram Medical college Hospital Mundiyambakkam Villupuram',l:3,s:[{b:'A',r:'39/2011-2012',e:'2022-02-12'},{b:'B',r:'40/2011-2012',e:'2022-02-12'},{b:'C',r:'41/11-12',e:'2022-02-12'}]},
+{i:72,t:'P',n:'K. Valarmathi,Pugazh hospital, 52B/23, Thiruvarangam Nagar, Kallakurichi',l:1,s:[{b:'A',r:'7/2009-10',e:'2022-03-04'}]},
+{i:73,t:'P',n:'Dr.A. Vasanthi,No: 140 & 141, Market Road, Perambalur',l:1,s:[{b:'A',r:'L975/2012-2013',e:'2022-03-14'}]},
+{i:74,t:'G',n:'Chief Medical Officer,Government Kamaraj Hospital, Chidambaram',l:1,s:[{b:'A',r:'123/2015-2016',e:'2022-03-17'}]},
+{i:75,t:'P',n:'Sri Kannika Parameswari Store,91, Kamarajar Street, Villupuram',l:1,s:[{b:'A',r:'01A/2006',e:'2022-03-26'}]},
+{i:76,t:'P',n:'Suham Apartments Owners Welfare Association,Vimala garden,op main road,Annamalai nagar,Chidambaram,Cuddalore District',l:1,s:[{b:'A',r:'02/2009-2010',e:'2022-04-07'}]},
+{i:77,t:'G',n:'The Sub Judge,Combined Court Building Tindivanam',l:2,s:[{b:'A',r:'169/2017-2018',e:'2022-05-03'},{b:'B',r:'170/2017-2018',e:'2022-05-03'}]},
+{i:78,t:'G',n:'Villupuram Medical College,Villupuram Medical College Mundiyambakkam, Villupuram.,',l:1,s:[{b:'A',r:'171/2017-2018',e:'2022-05-03'}]},
+{i:79,t:'P',n:'HOTEL DURAI,17 IMPERIAL ROAD, CUDDALORE',l:1,s:[{b:'A',r:'CUD2/1998-99',e:'2022-05-14'}]},
+{i:80,t:'P',n:'Govt Head Quarters Hospital, MCH Building , Cuddalore-607001',l:2,s:[{r:'219/19-20',e:'2022-05-20'}]},
+{i:81,t:'P',n:'Dr. V.Veenarani,VV Hospital, No.54, Kasura Garden 1st Street, Tirukoilur - 605757, Villupuram District,',l:1,s:[{b:'A',r:'126/2016-17',e:'2022-05-22'}]},
+{i:82,t:'P',n:'DR.G.RAJKUMAR,SUNDARA VINAYAGAR KOIL STREET KALLAKURICHI,',l:1,s:[{b:'A',r:'12/2010-2011',e:'2022-05-31'}]},
+{i:83,t:'P',n:'M/S M VENKATESHWARAN,NO 1785 BLOCK NO 47 6 IMPERIAL ROAD CUDDALORE',l:1,s:[{b:'A',r:'59/13-14',e:'2022-06-09'}]},
+{i:84,t:'P',n:'THE INDIA CEMENTS LTD,THE INDIA CEMENTS LTD, DALAVOI WORKS, CEMENT NAGAR P.O',l:1,s:[{b:'A',r:'L264/98-99',e:'2022-06-19'}]},
+{i:85,t:'P',n:'M/s. Dr.L.Paul,No.154, Mettu Street, (Old Bus Stand) Perambalur',l:1,s:[{b:'A',r:'L801/2011-2012',e:'2022-06-19'}]},
+{i:86,t:'P',n:'Hotel PAMS,30-B. Town Extension Road, OPP: Old Bus Stand, Mayiladuthurai-609001',l:1,s:[{b:'A',r:'7/2005-06',e:'2022-06-20'}]},
+{i:87,t:'P',n:'Mrs.E.CHANDRAPRIYA,NO.106G/35,VENKATESAPURAM ,NEAR KRISHNA THEATRE, PERAMBALUR-12',l:1,s:[{b:'A',r:'202/2018-2019',e:'2022-07-09'}]},
+{i:88,t:'P',n:'PAMS Residency,No.9/10, Pattamangala Street, Mayiladuthurai - 609001,',l:1,s:[{b:'A',r:'203/18-19',e:'2022-08-05'}]},
+{i:89,t:'P',n:'N karuppannan,331 G Mettu street Elambalur Road Perambalur',l:3,s:[{b:'A',r:'178/2017-2018',e:'2022-08-07'},{b:'B',r:'179/2017-2018',e:'2022-08-07'},{b:'C',r:'180/2017-2018',e:'2022-08-07'}]},
+{i:90,t:'G',n:'The Judicial Magistrate,Combined Court Building Ulundurpet',l:2,s:[{b:'A',r:'135/2016-2017',e:'2022-09-08'},{b:'B',r:'136/2016-2017',e:'2022-09-08'}]},
+{i:91,t:'P',n:'A.Mani,Old No.271/4A2 Durugam Main Road,Kallakurichi',l:1,s:[{b:'A',r:'146/2016-2017',e:'2022-09-21'}]},
+{i:92,t:'P',n:'N.Vijayalakshmi,52/2D1,thiruvarangam nagar, durugam road, KALLAKURICHI,',l:1,s:[{b:'A',r:'17/2010-11',e:'2022-09-22'}]},
+{i:93,t:'P',n:'M/s. SCM CLOTHES (P) LTD,No.93/B,93/4,93/5 Trichy Main Road, Villupuram-605402,',l:4,s:[{b:'A',r:'109/2015-2016',e:'2022-10-08'},{b:'B',r:'110/2015-2016',e:'2022-10-08'},{b:'C',r:'111/2015-2016',e:'2022-10-08'},{b:'D',r:'112/2015-2016',e:'2022-10-08'}]},
+{i:94,t:'P',n:'Jansen Infrastructure Pvt Ltd,S.No. 181/2A, 181/2B1A, 181/3C1, 181/3D, Bypass Road, Neelamangalam Village, Kallakurichi',l:1,s:[{b:'A',r:'221/19-20',e:'2022-10-15'}]},
+{i:95,t:'P',n:'Sukkibai,No.60, Sannadhi Street, Thirukovillur - 605 757.,',l:1,s:[{b:'A',r:'113/2015-2016',e:'2022-10-18'}]},
+{i:96,t:'G',n:'ADDITIONAL DISTRICT JUDGE,New Combined Court Building,Near Chidambaram RTO Office, Cuddalore Bypass, CMutlur, Chidambaram 608102',l:3,s:[{b:'A',r:'223/2019-20',e:'2022-10-24'},{b:'B',r:'224/2019-20',e:'2022-10-24'},{b:'C',r:'225/2019-20',e:'2022-10-24'}]},
+{i:97,t:'P',n:'VIJAY SPECIALITY CENTRE,VIJAY SPECIALITY CENTRE, No.78, Chekkumettu Street, Kallakurichi - 606213,',l:1,s:[{b:'A',r:'37834',e:'2022-12-09'}]},
+{i:98,t:'P',n:'Dr.A.SUSILA,AS Imaging Center,27,Pattu Nulkara Street Ariyalur 621704',l:1,s:[{b:'A',r:'233/2019-2020',e:'2023-02-09'}]},
+{i:99,t:'P',n:'The Principal,Govt. Polytechnic College, Kattuvanajur Village',l:1,s:[{b:'A',r:'238/2019-2020',e:'2023-03-15'}]},
+{i:100,t:'G',n:'SUB JUDGE,No.Combined Court Building, Kamaraj Nagar, Panruti - 607106 Cuddalore Dist,',l:1,s:[{b:'A',r:'239/2020-21',e:'2023-05-22'}]},
+{i:101,t:'G',n:'The Principal District Munsif,Combined Court Building, Sandapet, Thirukovilur - 605757, Kallakurichi',l:2,s:[{b:'A',r:'242/2020-2021',e:'2023-07-12'},{b:'B',r:'243/220-2021',e:'2023-07-12'}]},
+{i:102,t:'P',n:'Tmt.R.Shanthi,No.1, Chavadi Main Road, Thirupapuliyur',l:1,s:[{b:'A',r:'244/2020-2021',e:'2023-09-06'}]},
+{i:103,t:'P',n:'mt.R.Shanthi,No.1, Chavadi Main Road, Thirupapuliyur,,',l:1,s:[{b:'A',r:'245/2020-2021',e:'2023-09-06'}]},
+{i:104,t:'P',n:'THE SUPERINTENDENT,GOVT.HEAD QUARTERS HOSPITAL,OP AND MCH BUILDING,THURAIYUR ROAD,PERAMBALUR',l:1,s:[{b:'A',r:'258/2020-2021',e:'2023-10-18'}]},
+{i:105,t:'P',n:'T RAJESH KANNA,NO. H18, 18A, H18B, H18C, H18D, S.R.NO. 228/2, PLOT NO. H-18, J.J NAGAR, KURUMBANCHAVADI VILLAGE, ARIYALUR 621704',l:1,s:[{b:'A',r:'155/2016-2017',e:'2023-11-04'}]},
+{i:106,t:'P',n:'Sri Nidhi Rathina Theatre,Rajaji Salai, Block-12, Neyveli Township - 607803',l:1,s:[{b:'A',r:'261/2020-2021',e:'2023-11-15'}]},
+{i:107,t:'P',n:'N.Kannan,Vaira Maligai, No.31, Salem Main Road, Kallakurichi-606202',l:1,s:[{b:'A',r:'266/2020-2021',e:'2023-11-22'}]},
+{i:108,t:'P',n:'The Collector,Collector Office,Master Plan Complex, Perambalur 621212,',l:1,s:[{b:'A',r:'270/2020-2021',e:'2023-12-14'}]},
+{i:109,t:'G',n:'THE HOSPITAL SUPERINTENDENT,Government District Headquarters Hospital, Kallakurichi-606202,',l:1,s:[{b:'A',r:'274/2020-2021',e:'2024-01-19'}]},
+{i:110,t:'G',n:'THE PRINCIPAL,GOVERNMENT LAW COLLEGE,ADMINISTRATIVE BLOCK-BUILDING,VILUPURAM.,',l:1,s:[{b:'A',r:'275/2020-2021',e:'2024-01-19'}]},
+{i:111,t:'G',n:'PRINCIPAL GOVERNMENT LAW COLLEGE,Acadamic & Admin Block For GOvernment Law College at villupuram Cuddalore-605602',l:1,s:[{b:'A',r:'276/2020-2021',e:'2024-01-31'}]},
+{i:112,t:'G',n:'PRINCIPAL GOVERNMENT LAW COLLEGE,Library Building Villupuram Cuddalore-605602,',l:1,s:[{b:'A',r:'277/2020-2021',e:'2024-01-31'}]},
+{i:113,t:'P',n:'The Collector Election Commission Of India,Near Collectrate Campus Villupuram Cuddalore-605602.',l:1,s:[{b:'A',r:'278/2020-2021',e:'2024-02-03'}]},
+{i:114,t:'P',n:'N.RAMESH,11A/11C THANDAVARAYAN STREET, ARIYALUR 621704',l:1,s:[{b:'A',r:'162/2016-2017',e:'2024-02-21'}]},
+{i:115,t:'P',n:'M/s. S.Maharaja, Pathirakadai & Furnitures,1-A, Vilangara Street, Ariyalur 621704',l:1,s:[{b:'A',r:'165/2016-2017',e:'2024-03-16'}]},
+{i:116,t:'G',n:'Tamilnadu Medical Services Corporation Limited (District Drug Warehouse),Old Eye Hospital Campus, Chennai-Tiruchirappalli NH Service Road, Thoramangalam, Perambulur-621212.,',l:1,s:[{b:'A',r:'281/2020-21',e:'2024-03-29'}]},
+{i:117,t:'G',n:'Tamilnadu Medical Services Corporation Limited (District Drug Warehouse),T.S.No.506/2, Ward 4, Block 16, Old Nagoor Road, Nagapattinam-611003',l:1,s:[{b:'A',r:'282/2020-2021',e:'2024-04-04'}]},
+{i:118,t:'P',n:'Mr. Gnanakumar, Mr. Senthilnathan and Mr. Baskaran and others,Door No. 55, Kamaliswaran Kovil Street, T. S no. 327, Part of ward no. 4, Block no. 4, Chidambaram',l:1,s:[{b:'A',r:'283/2021-2022',e:'2024-04-15'}]},
+{i:119,t:'P',n:'R.Neethimannan,Sr.No:47/15,16,17, Perumulai Road, Tittagudi, Cuddalore Dist-606106,',l:1,s:[{b:'A',r:'284/2021-2022',e:'2024-05-03'}]},
+{i:120,t:'P',n:'Mrs. Jegathambal,w/O.Ramaswamy, ward:7,kalaivani Nagar,Pudukkudian Santhu, Thittakudi.',l:1,s:[{b:'A',r:'285/2021-2022',e:'2024-05-11'}]},
+{i:121,t:'P',n:'M/s. Auroville Foundations,No.(SunShip) Vanur Tk, Villupuram Dist 605 101',l:1,s:[{b:'A',r:'289/2021-2022',e:'2024-08-09'}]},
+{i:122,t:'P',n:'M/s. Auroville Foundations,South Block Kalpana) Vanur Tk, Villupuram Dist - 605101',l:1,s:[{b:'A',r:'290/2021-2022',e:'2024-08-09'}]},
+{i:123,t:'P',n:'M/s. Auroville Foundations,Vanur Tk, Villupuram Dist &ndash; 605 101.',l:1,s:[{b:'A',r:'291/2021-2022',e:'2024-08-09'}]},
+{i:124,t:'P',n:'M/s. Auroville Foundations,No.( Admin Buliding),Vanur Tk, Villupuram Dist,',l:1,s:[{b:'A',r:'292/2021-2022',e:'2024-08-09'}]},
+{i:125,t:'P',n:'M/s. Auroville Foundations,No.(Dominique Darr Center for Arts), Vanur Tk, Villupuram Dist 605 101.',l:1,s:[{b:'A',r:'293/2021-2022',e:'2024-08-09'}]},
+{i:126,t:'P',n:'Sumangali Silks, Jawans Bhavan Building,Lawrance Road, Cuddalore',l:2,s:[{b:'A',r:'106/2015-2016',e:'2024-08-23'},{b:'B',r:'107/2015-2016',e:'2024-08-23'}]},
+{i:127,t:'P',n:'Dr. T. Manimaran,Aniruth Hospital, SF.No. 541/11, Near GH, Benny House Street, Ariyalur',l:1,s:[{b:'A',r:'297/2021-2022',e:'2024-09-22'}]},
+{i:128,t:'P',n:'D.P. Thangadurai, Kattumannar Koil,Katchery Street, Kattumannar koil,',l:1,s:[{b:'A',r:'149/2016-2017',e:'2024-10-05'}]},
+{i:129,t:'G',n:'Assistant Executive Engineer, Electrical sub division,Cuddalore,District Munisif Judicial Majistrate Court Building, MAJISTRATE BUILDING, PORTONOVO, CUDDALORE DIST',l:1,s:[{b:'A',r:'184/2017-18',e:'2024-10-25'}]},
+{i:130,t:'P',n:'M/s.Ramkamal Property Developers,Ward 7, Block No. 6, T.S.No. 228/2A, 2B, 2C, Netaji Road, Manjakuppam, Cuddalore - 607001',l:1,s:[{b:'A',r:'298/2021-2022',e:'2024-10-26'}]},
+{i:131,t:'P',n:'The Project Director,DRDA Master Complex Building Collectorate, Near Forest Office,',l:1,s:[{b:'A',r:'299/2021-2022',e:'2024-10-26'}]},
+{i:132,t:'P',n:'PIRAIYON S,TS.NO.1784/1A3A Railway over bridge road Soorappanayakkan chavadi Cuddalore',l:1,s:[{b:'A',r:'185/2017-2018',e:'2024-11-01'}]},
+{i:133,t:'G',n:'The Principal,New Government Polytechnic College, Kooduveli, kattumannarkoil, Cuddalore District-608305',l:1,s:[{b:'A',r:'303/2021-2022',e:'2024-11-09'}]},
+{i:134,t:'P',n:'A.P. NARAYANASAMY CHETTIAR JAVULI STORES,ANAND, MAHALAKSHMI DOOR NO.19A, M.P.KOIL STREET, ARIYALUR',l:1,s:[{b:'A',r:'L1075/2013-14',e:'2024-12-01'}]},
+{i:135,t:'G',n:'The Dean,Lift No. 4, Admin Block - Back Side North Lift New Government Medical College and Hospital, Siruvangur',l:1,s:[{b:'A',r:'305/2021-2022',e:'2024-12-07'}]},
+{i:136,t:'G',n:'The Dean,Lift No. 2, Admin Block - Main Entrance North Side, New Government Medical College and Hospital, Siruvangur',l:1,s:[{b:'A',r:'306/2021-2022',e:'2024-12-07'}]},
+{i:137,t:'G',n:'The Dean,Lift No. 1, Admin Block Main Entrance South Side, New Government Medical College and Hospital, Siruvangur,',l:1,s:[{b:'A',r:'307/2021-2022',e:'2024-12-07'}]},
+{i:138,t:'G',n:'The Dean,Lift No. 3, Admin Block - Back Side South Lift, New Government Medical College and Hospital, Siruvangur,',l:1,s:[{b:'A',r:'308/2021-2022',e:'2024-12-07'}]},
+{i:139,t:'P',n:'The Secretary,Agriculture Marketing Committee Building,Vadakku Mathavi Road, Gandhi Nagar,Elampalur(P.o), Perambalur',l:1,s:[{b:'A',r:'309/2021-2022',e:'2024-12-07'}]},
+{i:140,t:'P',n:'SHEIK MOHIDEEN,SM Tower, Lodge and complex, salem main road, kallakurichi',l:1,s:[{b:'A',r:'21/2010-2011',e:'2024-12-08'}]},
+{i:141,t:'P',n:'GRK Theatre Complex, C/o Sumangali Silks,GRK Theatre Complex, C/o Sumangali Silks, No 89, Lawrance Road, Cuddalore',l:1,s:[{b:'A',r:'15/2016-2017',e:'2024-12-15'}]},
+{i:142,t:'P',n:'ARIYALUR GOLDEN HOSPITAL PVT LTD,81A, PERIYAR NAGAR MAIN ROAD, ARIYALUR - 621714',l:1,s:[{b:'A',r:'562/2008-2009',e:'2024-12-19'}]},
+{i:143,t:'P',n:'P.V. SHANMUGAM,SHANMUGAM JAVULI STORE, 5-A, MARKET STREET, ARIYALUR 621704',l:1,s:[{b:'A',r:'117/2015-2016',e:'2024-12-20'}]},
+{i:144,t:'G',n:'Chief Civil Surgeon,Government Hospital, Panruti',l:1,s:[{b:'A',r:'310/2021-2022',e:'2024-12-21'}]},
+{i:145,t:'P',n:'Sumangali Silks,Sumangali Silks, No 89, Lawrance Road, Cuddalore',l:1,s:[{b:'A',r:'5/2007-2008',e:'2024-12-26'}]},
+{i:146,t:'P',n:'P.S.RANGAMANNAR,DOOR NO.15,17, PERUMAL KOIL SANNATHI STREET, TINDIVANAM',l:1,s:[{b:'A',r:'38/11-12',e:'2025-01-09'}]},
+{i:147,t:'P',n:'M.Swaminathan No.5, SowdambigaiNagar, Cuddalore',l:1,s:[{b:'A',r:'119/2015-2016',e:'2025-01-13'}]},
+{i:148,t:'P',n:'Registrar,Sastri Hall, Annamalai University,',l:1,s:[{b:'A',r:'1/2005-2006',e:'2025-01-31'}]},
+{i:149,t:'P',n:'Registrar,VC Bungalow, Annamalai University',l:1,s:[{b:'A',r:'2/2005-2006',e:'2025-01-31'}]},
+{i:150,t:'P',n:'THE THASILDAR,KALLAKURICHI TALUK OFFICE, KALLAKURICHI DISTRICT,KALLAKURICHI - 606202',l:1,s:[{b:'A',r:'311/2021-2022',e:'2025-02-01'}]},
+{i:151,t:'P',n:'DR.SOWMINI,M/S.HOTEL SADHABISHEGAM ,D.NO.6/18-A , SANNATHI STREET ,THIRUKADAIYUR-609311,',l:1,s:[{b:'A',r:'03/2007-2008',e:'2025-02-07'}]},
+{i:152,t:'P',n:'Sai specialty Hospital,7/K2 Rajanagar kallakurichi,',l:1,s:[{b:'A',r:'161/2016-2017',e:'2025-02-16'}]},
+{i:153,t:'P',n:'The Assistant Commissioner,No.60, Mohan Singh Street, Cuddalore',l:1,s:[{b:'A',r:'312/2021-2022',e:'2025-02-17'}]},
+{i:154,t:'P',n:'Dr. R. Saravanan, Hotel Radhai Anna Nagar Main Road, Kallakuruchi',l:1,s:[{b:'A',r:'163/2016-2017',e:'2025-02-21'}]},
+{i:155,t:'P',n:'Hasina Begum,Ansari Hospital Naganathar Street',l:1,s:[{b:'A',r:'5/2007-08',e:'2025-02-25'}]},
+{i:156,t:'P',n:'Bonjour Bonheur Ocean Spray,No.7,8,9, ECR Main Road, Manjakuppam, Tindivanam TK',l:4,s:[{b:'A',r:'27/2010-11',e:'2025-02-27'},{b:'B',r:'28/2010-11',e:'2025-02-27'},{b:'C',r:'29/2010-11',e:'2025-02-27'},{b:'D',r:'30/2010-11',e:'2025-02-27'}]},
+{i:157,t:'P',n:'THE COLLECTOR OFFICE,Villupuram District, Villupuram - 605602',l:1,s:[{b:'A',r:'314/2021-2022',e:'2025-03-03'}]},
+{i:158,t:'G',n:'The Dean,CRRI - Female Quarters, New Government Medical College and Hospital, Siruvangur,',l:2,s:[{b:'A',r:'315/2021-2022',e:'2025-03-06'},{b:'B',r:'316/2021-2022',e:'2025-03-06'}]},
+{i:159,t:'G',n:'The Dean, Government Kamaraj Hospital, Chidambaram,Government Kamaraj Hospital, Chidambaram.',l:1,s:[{b:'A',r:'123/2015-2016',e:'2025-03-17'}]},
+{i:160,t:'G',n:'The Dean,Hostel for Students (286 Boys ) Government Medical College and Hospital, Kallakurichi',l:2,s:[{b:'A',r:'325/2021-2022',e:'2025-03-23'},{b:'B',r:'326/2021-2022',e:'2025-03-23'}]},
+{i:161,t:'G',n:'The Dean,Hostel for Students (286 Girls ) Government Medical College and Hospital, Kallakurichi,',l:2,s:[{b:'A',r:'327/2021-2022',e:'2025-03-23'},{b:'B',r:'328/2021-2022',e:'2025-03-23'}]},
+{i:162,t:'P',n:'P. GANESAN,PGM COMPLEX, ARIYALUR',l:2,s:[{b:'A',r:'330/2022-2023',e:'2025-04-10'},{b:'B',r:'331/2022-2023',e:'2025-04-10'}]},
+{i:163,t:'P',n:'Prasad Kumar, Tindivanam Pondy Main Road, Tindivanam TK, Villupuram Dist',l:3,s:[{b:'A',r:'193/2018-19',e:'2025-04-24'},{b:'B',r:'194/2018-19',e:'2025-04-24'},{b:'C',r:'195/2018-19',e:'2025-04-24'}]},
+{i:164,t:'P',n:'THE THASILDAR,KALVARAYAN MALAI TALUK OFFICE, KALVARAYAN MALAI KALLAKURICHI DISTRICT,Kallakurichi-606207',l:1,s:[{b:'A',r:'332/2022-2023',e:'2025-04-24'}]},
+{i:165,t:'P',n:'DR G ATHMALINGAM MEDICAL AND EDUCATIONAL TRUST,PRG HOSPITAL,NO.85,THIRUVANNAMALI HIGH ROAD, SAKKARAPURAM,GINGEE-604202.VILLUPURAM',l:1,s:[{b:'A',r:'167/2017-2018',e:'2025-05-03'}]},
+{i:166,t:'P',n:'Ameer Traders,Kumbakonam Main Road, Pownammbal Nagar, Vadakuthu Village, Gandhi Nagar PO, Neyveli,',l:1,s:[{b:'A',r:'128/2016-2017',e:'2025-05-25'}]},
+{i:167,t:'P',n:'DR.S.ABUBAKKAR,M/S.S.A.HOSPITAL MAIN ROAD MURARBADU, SANKARAPURAM T.K, KALLAKURICHI-606208',l:1,s:[{b:'A',r:'197/2018-2019',e:'2025-05-29'}]},
+{i:168,t:'P',n:'G.RAMESH & UMAMAHESWARI RAMESH,TS.NO.15/1B,BLOCK-15,WARDF, KAVERIPAKKAM VILLAGE,TINDIVANAM',l:1,s:[{b:'A',r:'196/2018-2019',e:'2025-05-29'}]},
+{i:169,t:'G',n:'The Dean,Government Villupuram Medical College and Hospital',l:1,s:[{b:'A',r:'344/2022-2023',e:'2025-06-05'}]},
+{i:170,t:'P',n:'R MADHAN KUMAR,SF No 282/2A23 old SF No 416/4 B Mettu Street ,Elambalur Road, Perambalur - 621212',l:1,s:[{b:'A',r:'345/2022-2023',e:'2025-06-05'}]},
+{i:171,t:'P',n:'Dr.K.SARAVANAN,saravana hospital, Block no.32 Gundu salai utharamanickam street cuddalore',l:1,s:[{b:'A',r:'60/13-14',e:'2025-06-09'}]},
+{i:172,t:'G',n:'The District Munsif,Combined Court Building, Sankarapuram, Kallakurichi,,',l:1,s:[{b:'A',r:'350/2022-2023',e:'2025-06-14'}]},
+{i:173,t:'G',n:'District collector,District collector collectorate building cuddalore',l:2,s:[{b:'A',r:'101/2015-16',e:'2025-06-17'},{b:'B',r:'102/2015-16',e:'2025-06-17'}]},
+{i:174,t:'P',n:'Nallappa Silks,Nallappa Silks, No.10, Salem Main Road, Kallakurichi',l:1,s:[{b:'A',r:'33/2011-12',e:'2025-06-20'}]},
+{i:175,t:'P',n:'S.Venkatesan, SRS Shopping Mall, Ariyalur',l:1,s:[{b:'A',r:'201/2018-2019',e:'2025-06-21'}]},
+{i:176,t:'P',n:'PERSONAL ASSISTANT TO COLLECTOR CUDDALORE (GENERAL),Collectorate Complex, Cuddalore, Pincode - 607001',l:1,s:[{b:'A',r:'354/2022-2023',e:'2025-06-28'}]},
+{i:177,t:'P',n:'Suba Valli Vilas,No. 61, 62, Lawrence Road, Thirupapuliyur, Cuddalore - 606002',l:1,s:[{b:'A',r:'1/2006-07',e:'2025-07-06'}]},
+{i:178,t:'P',n:'E.S.S.M. EDUCATIONAL AND CHARITABLE TRUST,E.S.NAGAR,NO:3/249-B,NH-45,CHENNAI TRUNK ROAD,AYYANKOILPATTI,VILLUPURAM',l:1,s:[{b:'A',r:'356/L/F/CUD/2022-2023',e:'2025-07-13'}]},
+{i:179,t:'P',n:'DR.K.ANBUCHEZHIAN & S.NALINI,No.707, R.S.NO:44/4D4, JUNCTION ROAD, VRIDHACHALAM',l:1,s:[{b:'A',r:'104/2015',e:'2025-08-02'}]},
+{i:180,t:'G',n:'The Dean,C and D Type Quarters - North Corner Lift Government Medical College and Hospital, Kallakurichi,',l:2,s:[{b:'A',r:'361/2022-2023',e:'2025-08-04'},{b:'B',r:'360/2022-2023',e:'2025-08-04'}]},
+{i:181,t:'G',n:'Cheif medical officer,Taluk head quarter hospital, kattumannar koil, cuddalore',l:1,s:[{b:'A',r:'79/2014-15',e:'2025-08-06'}]},
+{i:182,t:'P',n:'Govt Head Quarter Hosptial, Dialysis Centre Building, Hospital Road, Cuddalore-01',l:1,s:[{b:'A',r:'181/2017-2018',e:'2025-08-30'}]},
+{i:183,t:'P',n:'Dr. R.Govindasamy,Chandra Hospital, No.835, Junction Road, Vridhachalam, Cuddalore Dist - 606001',l:1,s:[{b:'A',r:'137/2016-17',e:'2025-08-31'}]},
+{i:184,t:'P',n:'Sabari Stores Pvt Ltd,No.168, Cuddalore Main Road, Virudhachalam',l:3,s:[{b:'A',r:'364/2022-2023',e:'2025-09-07'},{b:'B',r:'365/2022-2023',e:'2025-09-07'},{b:'C',r:'366/2022-2023',e:'2025-09-07'}]},
+{i:185,t:'P',n:'CR. Jayashankar,Jayapriya Guest House, No.14/1, Kuthusi Gurusamy Street, Thirupapuliyur, Cuddalore - 2',l:1,s:[{b:'A',r:'16/2010-11',e:'2025-09-12'}]},
+{i:186,t:'G',n:'assistant executive engineer,new court building tittagudi, lift no.83',l:1,s:[{b:'A',r:'107/2015-16',e:'2025-09-13'}]},
+{i:187,t:'G',n:'assistant executive engineer,new court building tittagudi, lift no.84',l:1,s:[{b:'A',r:'107/2015-16',e:'2025-09-13'}]},
+{i:188,t:'G',n:'The principal District Judge,combined district court building, cuddalore',l:1,s:[{b:'A',r:'66/2013-14',e:'2025-09-18'}]},
+{i:189,t:'P',n:'C.R. Jayashankar,Hotel Jayapriya, Panruti Main Road, Vadulur - 607303',l:1,s:[{b:'A',r:'145/2016-17',e:'2025-09-20'}]},
+{i:190,t:'P',n:'A. Suresh,SF.No.169/1A1, 1A2, 1B1, Vathistapuram Road Street, Vathistapuram Village, Tittagudi TK,',l:1,s:[{b:'A',r:'370/2022-2023',e:'2025-10-10'}]},
+{i:191,t:'P',n:'K. Karunanethi,S.F.No:356/10A2A,356/10A2B, Kandamanadi Village, Koliyanur Panchayat Union, Villupuram Taluk, Villupuram District',l:1,s:[{b:'A',r:'374/2022-2023',e:'2025-10-25'}]},
+{i:192,t:'P',n:'Mr.E.Marconi,Marconi grand Tower,No.120 A,pidari mela theru,periya kadai street,Sirkali,Mayiladuthurai.',l:1,s:[{b:'A',r:'371/2022-2023',e:'2025-10-27'}]},
+{i:193,t:'P',n:'V. Chandra and 4 Others,Customer Lift No.2,T.S.No.1782/2C, Ward - 5, Block - 47,Tirupadiripuliyur Village,',l:3,s:[{b:'A',r:'375/2022-2023',e:'2025-11-10'},{b:'B',r:'376/2022-2023',e:'2025-11-10'},{b:'C',r:'377/2022-2023',e:'2025-11-10'}]},
+{i:194,t:'P',n:'S.Satheesh Raj,Plot No.22, Gandhi Nagar, Vadakuthu, Cuddalore-607308',l:1,s:[{b:'A',r:'378/2022-2023',e:'2025-11-17'}]},
+{i:195,t:'P',n:'EXECUTIVE ENGINEER / ELECTRICAL,CENTRAL CONTROL ROOM KUTTALAM GAS TURBINE POWER STATION MARUTHUR',l:1,s:[{b:'A',r:'17/2006-07',e:'2025-11-23'}]},
+{i:196,t:'P',n:'K.Shanmugam,RASI FLATS,44/19 EAST CAR STREET CHIDAMBARAM',l:1,s:[{b:'A',r:'31/2001-2002',e:'2025-11-28'}]},
+{i:197,t:'G',n:'THE DEAN,Lift-2, Government Medical College and Hospital, Kallakurichi- 606202',l:1,s:[{b:'A',r:'385/2022-2023',e:'2025-12-05'}]},
+{i:198,t:'P',n:'Director RGCA Karaimedu,Pathogen Screening Laboratory RGCA Head Quarters, Sirkali Nagapattinam District,',l:1,s:[{b:'A',r:'386/2022-2023',e:'2025-12-07'}]},
+{i:199,t:'P',n:'M/S A.V.R TOWER,NO 4 BHARATHI ROAD CUDDALORE PINCODE:607001',l:1,s:[{b:'A',r:'2/1999-2000',e:'2025-12-11'}]},
+{i:200,t:'G',n:'THE PRINCIPAL DISTRICT JUDGE,DISTRICT COURT BUILDING,VILLUPURAM',l:2,s:[{b:'A',r:'227/2019-20',e:'2025-12-19'},{b:'B',r:'228/2019-20',e:'2025-12-19'}]},
+{i:201,t:'P',n:'K.B.Viswanathan,Maniam Cloth Store, RS.No. 214/10A, South Main Road, Sethiathope, Cuddalore Dist',l:1,s:[{b:'A',r:'226/2019-20',e:'2025-12-19'}]},
+{i:202,t:'G',n:'R.Subhasri,M/S.Rainbow Plazaa Complex,Door No.5,ward No.3,TS. No. 31,Government Hospital Street, Mayiladuthurai',l:2,s:[{b:'A',r:'389/2022-2023',e:'2025-12-25'},{b:'B',r:'390/2022-2023',e:'2025-12-25'}]},
+{i:203,t:'G',n:'The Dean,Hospital Block - Main Entrance Government Medical College and Hospital, Kallakurichi',l:2,s:[{b:'A',r:'392/L/F/CUD/2022-2023',e:'2025-12-28'},{b:'B',r:'396/2022-2023',e:'2025-12-28'}]},
+{i:204,t:'G',n:'The Dean,Hospital Block - Main Entrance, Government Medical College and Hospital, Kallakurichi,',l:2,s:[{b:'A',r:'393/2022-2023',e:'2025-12-28'},{b:'B',r:'395/2022-2023',e:'2025-12-28'}]},
+{i:205,t:'G',n:'The Dean,Hospital Block Ramp Side Lift No. 4 Government Medical College and Hospital, Kallakurichi,',l:1,s:[{b:'A',r:'394/2022-2023',e:'2025-12-28'}]},
+{i:206,t:'P',n:'V.R.S.College of Engineering and Technology,Sr.No: 185/3,185/4,185/16, Arasur, Villupuram-607107',l:1,s:[{b:'A',r:'391/L/F/CUD/2022-2023',e:'2026-01-08'}]},
+{i:207,t:'P',n:'ASSISI HOSPITAL,Vadakurumbur Road, RS.No.83/1,83/2,Eraiyur Village, Ulundurpet Taluk, Villupuram',l:1,s:[{b:'A',r:'398/L/F/CUD/2022-2023',e:'2026-01-30'}]},
+{i:208,t:'P',n:'Hotel Afsan Plaza, No.2, Venugopal Pillai Street, Chidambaram',l:1,s:[{b:'A',r:'4/1999-2000',e:'2026-02-09'}]},
+{i:209,t:'P',n:'AKT. Mahendran,RS.No. 308/8A, Rajambal Nagar, Salem Main Road, Kallakurichi, Villupuram Dist,',l:1,s:[{b:'A',r:'232/2019-2020',e:'2026-02-18'}]},
+{i:210,t:'G',n:'The Dean,New Government Hospital, Block - B (East), Ariyalur - 621704',l:1,s:[{b:'A',r:'399/2022-2023',e:'2026-03-12'}]},
+{i:211,t:'G',n:'The Dean,New Government Hospital, Block - B (West), Ariyalur - 621704',l:1,s:[{b:'A',r:'400/2022-2023',e:'2026-03-12'}]},
+{i:212,t:'P',n:'S.SENGUTTUVAN(SKS HOSPITAL), No.452/10,No.61,Trichy Main Road,Venkadesapuram, Perambalur',l:1,s:[{b:'A',r:'236/2019-2020',e:'2026-03-15'}]},
+{i:213,t:'G',n:'The Dean,Hospital Block - South Entrance Lift No.3, Government Medical College and Hospital, Kallakurichi,',l:1,s:[{b:'A',r:'401/2022-2023',e:'2026-03-19'}]},
+{i:214,t:'P',n:'The Secretary,Theivanai Ammal College for Women (Autonomous), Chennai- Trichy Trunk Road, Villupuram 605 401',l:1,s:[{b:'A',r:'402/2022-2023',e:'2026-03-27'}]},
+{i:215,t:'P',n:'V.Bbulal,Sr.No;362/B34A1 Ts.No: 271, 272 Kamraj Street, Villupuram',l:1,s:[{b:'A',r:'403/L/F/CUD/1680504389',e:'2026-03-30'}]},
+{i:216,t:'P',n:'V. Chandra and 4 Others,T.S.No.1782/2C, Ward - 5, Block - 47, Tirupadiripuliyur',l:1,s:[{b:'A',r:'406/2023-24',e:'2026-04-12'}]},
+{i:217,t:'P',n:'Circuit House Building,Master Plan Complex Viluppuram, Viluppuram District - 605602',l:1,s:[{b:'A',r:'404/2023-24',e:'2026-04-23'}]},
+{i:218,t:'P',n:'M.Ramesh,T.S.No: 5574/1,& 2B, Nellikuppam Main Road, Cuddalore-607001',l:1,s:[{b:'A',r:'405/2023-24',e:'2026-05-01'}]},
+{i:219,t:'G',n:'The Dean,New Government Hospital, Block - A (West), Ariyalur - 621704',l:1,s:[{b:'A',r:'408/2023-24',e:'2026-05-05'}]},
+{i:220,t:'G',n:'The Dean,New Government Hospital, Block - C (East), Ariyalur - 621704,',l:3,s:[{b:'A',r:'407/2023-24',e:'2026-05-08'},{b:'B',r:'409/2023-24',e:'2026-05-08'},{b:'C',r:'410/2023-24',e:'2026-05-08'}]},
+{i:221,t:'P',n:'DISTRICT FIRE OFFICE AND FIRE AND RESCUE SERVICE STATION CUM GARAGE AT CUDDALORE IN CUDDALORE DISTRICT,SILVER BEACH ROAD DEVANAMPATTINAM',l:1,s:[{b:'A',r:'411/2023-24',e:'2026-05-14'}]},
+{i:222,t:'P',n:'J. SUKUMAR GANDHI AND S. SUDHA,Ward No.5, Block-46, T.S.No.1768 ROB Link Road (SSR Road) Thirupathiripuliyur',l:1,s:[{b:'A',r:'412/2023-24',e:'2026-05-17'}]},
+{i:223,t:'P',n:'Sangamithirai Multipurpose Hall,414/2B, Main Road, Thandavankulam, Sirkali Taluk,Nagapattinam,',l:2,s:[{b:'A',r:'413/2023-24',e:'2026-05-22'},{b:'B',r:'414/2023-24',e:'2026-05-22'}]},
+{i:224,t:'G',n:'The Dean,Government Medical College,BoysHostel,Manalmedu,Orathur,Nagapattinam',l:1,s:[{b:'A',r:'417-418/2023-24',e:'2026-05-29'}]},
+{i:225,t:'P',n:'M/s CK College of Engineering,Jayaram Nagar, Chellanguppam, Cuddalore 607003',l:1,s:[{b:'A',r:'415/2023-24',e:'2026-05-29'}]},
+{i:226,t:'P',n:'S.ARUMUGAM,No.15, SEENIVASA NAGAR , JAYANKONDAM CHIDAMBARAM ROAD JAYANKONDAM',l:1,s:[{b:'A',r:'419/2023-24',e:'2026-05-30'}]},
+{i:227,t:'P',n:'Hotel Radha Pvt Ltd,No.16,Neyveli Township, Neyveli',l:1,s:[{b:'A',r:'240/2020-2021',e:'2026-06-03'}]},
+{i:228,t:'G',n:'THE DISTRICT COLLECTOR and CHAIRMAN,DRDA-District Collectrate Building,Nagapattinam',l:1,s:[{b:'A',r:'241/2020-2021',e:'2026-06-16'}]},
+{i:229,t:'G',n:'The District Collector,The New Collectorete in Master Plan Complex Ariyalur',l:1,s:[{b:'A',r:'L-131/2016-17',e:'2026-07-03'}]},
+{i:230,t:'P',n:'Dr. P.Arunkumar,No.29, YMCA Colony, ALC Campus,Manjakuppam, Cuddalore',l:1,s:[{b:'A',r:'421/2023-24',e:'2026-07-18'}]},
+{i:231,t:'P',n:'M.Srividhaya,Door No:160A, East Car Street, Chidhambaram-608001',l:1,s:[{b:'A',r:'420/2023-24',e:'2026-07-20'}]},
+{i:232,t:'P',n:'V.Murugesan Murugesan Hospital,7/B, Sundara vinayagar Koil st,, Kallakurichi',l:1,s:[{b:'A',r:'37/2011-2012',e:'2026-07-28'}]},
+{i:233,t:'P',n:'Dr. V. Mariappan,Plot No:4,T.S.No:223/3,229,230, T.S.Ward:6, Block:9,Pudupalayam Main Road, Pudupalayam, Cuddalore',l:1,s:[{b:'A',r:'422/2023-24',e:'2026-09-11'}]},
+{i:234,t:'P',n:'SHREE SAI MULTI SPECIALITY HOSPITAL,TINDIVANAM ROAD OPP TO PANJABI DHABA OORANITHANGAL VILLAGE GINGEE',l:1,s:[{b:'A',r:'423/2023-24',e:'2026-09-25'}]},
+{i:235,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Girls Hostel) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,375/1A, Siruvachur, Perambalur-621 113',l:1,s:[{b:'A',r:'246/2020-2021',e:'2026-09-29'}]},
+{i:236,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Boys Hostel) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,375/1A, Siruvachur, Perambalur-621 113',l:1,s:[{b:'A',r:'247/2020-2021',e:'2026-09-29'}]},
+{i:237,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (OP-A Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,375/1A, Siruvachur, Perambalur-621 113.,',l:1,s:[{b:'A',r:'248/2020-2021',e:'2026-09-29'}]},
+{i:238,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (OP-B Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,375/1A, Siruvachur, Perambalur-621 113',l:1,s:[{b:'A',r:'249/2020-2021',e:'2026-09-29'}]},
+{i:239,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (OP-DD Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113.,',l:1,s:[{b:'A',r:'250/2020-2021',e:'2026-09-29'}]},
+{i:240,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Academic Library) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113',l:1,s:[{b:'A',r:'251/2020-2021',e:'2026-09-29'}]},
+{i:241,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (Academic Lecture Hall) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113.',l:1,s:[{b:'A',r:'252/2020-2021',e:'2026-09-29'}]},
+{i:242,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (A-Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113',l:1,s:[{b:'A',r:'253/2020-2021',e:'2026-09-29'}]},
+{i:243,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (B-Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113.,',l:1,s:[{b:'A',r:'254/2020-2021',e:'2026-09-29'}]},
+{i:244,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (C-Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113.,',l:1,s:[{b:'A',r:'255/2020-2021',e:'2026-09-29'}]},
+{i:245,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (D-Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113.,',l:1,s:[{b:'A',r:'256/2020-2021',e:'2026-09-29'}]},
+{i:246,t:'P',n:'Dhanalakshmi Srinivasan,Dhanalakshmi Srinivasan Medical College and Hospital (E-Block) SF.No.368/14,369/1A2,370/1B,371/1A,377/1,378/1A, Siruvachur, Perambalur-621 113.,',l:1,s:[{b:'A',r:'257/2020-2021',e:'2026-09-29'}]},
+{i:247,t:'P',n:'P.S.Sabarathinam 12,Somasundara mudhaliyar Street, Chidambaram',l:1,s:[{b:'A',r:'20/2010-2011',e:'2026-10-13'}]},
+{i:248,t:'P',n:'M/s.New KVM Jewellers,Sr.No:426/7,8A,8B, D.No: 35,36,37,38, Keezh Agrahara Street, Salem Main Road, Kallakurichi-606 202',l:1,s:[{b:'A',r:'259/2020-2021',e:'2026-10-23'}]},
+{i:249,t:'P',n:'NEW KVM JEWELLERS, Sr.No:426/7,8A,8B, D.No: 35,36,37,38, Keezh Agrahara Street, Salem Main Road, Kallakurichi-606 202',l:1,s:[{b:'A',r:'260/2020-2021',e:'2026-10-23'}]},
+{i:250,t:'G',n:'The Dean,A Type Quatres - South Corner Lift Government Medical College and Hospital, Kallakurichi',l:2,s:[{b:'A',r:'424/2023-24',e:'2026-10-30'},{b:'B',r:'425/2023-24',e:'2026-10-30'}]},
+{i:251,t:'P',n:'SRI KANNIKA PAREMESWARI STORE, Chennai- Kumbakonam Main Road, Vadakuthu Village, Neyveli',l:3,s:[{b:'A',r:'262',e:'2026-11-11'},{b:'B',r:'263/2020-21',e:'2026-11-11'},{b:'C',r:'264/2020-21',e:'2026-11-11'}]},
+{i:252,t:'P',n:'R.Sindhu and Mr S.Sekar, Complex, SF No 560/5,562/2,Opp to Neyveli Arch GateVadakuthu Village,Chennai-Kumbakonam salai, Neyveli',l:1,s:[{b:'A',r:'265/2020-2021',e:'2026-11-18'}]},
+{i:253,t:'P',n:'The Divisional Railway Manager,Electrical General service, Tiruchirapalli Division Southern Railway, Tirupadiripuliyur Railway Station, Platform No.3, SH-68 Muthaiya Nagar',l:2,s:[{b:'A',r:'426/2023-24',e:'2026-11-20'},{b:'B',r:'427/2023-24',e:'2026-11-20'}]},
+{i:254,t:'G',n:'CHIEF CIVIL SURGEON MEDICAL OFFICER,GOVERNMENT PERIYAR HOSPITAL, HOSPITAL ROAD, MAYILADUTHURAI',l:2,s:[{b:'A',r:'267/2020-2021',e:'2026-11-22'},{b:'B',r:'268/2020-2021',e:'2026-11-22'}]},
+{i:255,t:'P',n:'K.Sarangapani,503-A88, 15/1 (15/1A), 503/2-A87,15/4A1A Thillai Nagar, VADAKUTHU Village, Cuddalore Dist.,',l:1,s:[{b:'A',r:'428/2023-24',e:'2026-11-27'}]},
+{i:256,t:'P',n:'The Divisional Railway Manager,Electrical General service,Tiruchirapalli Division southern Railway, Ariyalur Railway Station PF No 1,Perambalur Road,Anna Nagar Ariyalur-621704',l:2,s:[{b:'A',r:'431/2023-24',e:'2026-12-11'},{b:'B',r:'432/2023-24',e:'2026-12-11'}]},
+{i:257,t:'P',n:'The collector,Collector Office, Master Complex, Perambalur',l:1,s:[{b:'A',r:'269/2020-2021',e:'2026-12-14'}]},
+{i:258,t:'P',n:'M Ramesh,Shopping Mall, SF.No: No:83/2B, 2C, Door No. 7, Bharathi Road, Cuddalore.607001,',l:3,s:[{b:'A',r:'428/2023-24',e:'2026-12-20'},{b:'B',r:'429/2023-24',e:'2026-12-20'},{b:'C',r:'430/2023-24',e:'2026-12-20'}]},
+{i:259,t:'G',n:'THE DISTRICT JUDGE,COMBINED C0URT COMPOUND BUILDING,PUBLIC OFFICE ROAD,NAGAPATTINAM.',l:2,s:[{b:'A',r:'272/2020-2021',e:'2027-01-18'},{b:'B',r:'273/2020-2021',e:'2027-01-18'}]},
+{i:260,t:'P',n:'R.Geetha,Door No.281/128,279/127,277/126,275/125,T.S.No.71,72,73,74,R.S.No.280/1,Ward No E,Block No 99,Bazaar Street,Virudhachalam Town And Taluk,Cuddalore District,',l:1,s:[{b:'A',r:'271/2020-2021',e:'2027-01-18'}]},
+{i:261,t:'P',n:'Mr.MURUKESHBABU S/O. SURENDRABABU,Ward - A, Block - 16, New T.S.No.84 and 85, (Old S.F.No.9), Ranganathan Street, Poonthottam Village, Villupuram - 605602',l:2,s:[{b:'A',r:'434/2023-24',e:'2027-01-19'},{b:'B',r:'435/2023-24',e:'2027-01-19'}]},
+{i:262,t:'G',n:'Chief Medical Officer,Government Taluk Hospital, Trauma Care Building, Kurinjipadi,',l:1,s:[{b:'A',r:'433/2023-24',e:'2027-01-22'}]},
+{i:263,t:'P',n:'Sri Kannika Parameswari Store,No.91, Kamarajar Street',l:1,s:[{b:'A',r:'436/2023-24',e:'2027-01-30'}]},
+{i:264,t:'P',n:'S. JEEVANTHAM,RAJAJI NAGAR ARIYALUR 621713',l:1,s:[{b:'A',r:'160/2016-2017',e:'2027-02-01'}]},
+{i:265,t:'P',n:'P.MURUGESAN,No.105,105/1,105/2, VATHISTAPURAM MAIN ROAD THITTAGUDI',l:1,s:[{b:'A',r:'437/2023-24',e:'2027-02-05'}]},
+{i:266,t:'P',n:'Krishna Hospital and Research Foundation, Thottapattu Village, Nellikuppam Main Road',l:1,s:[{b:'A',r:'279/2020-2021',e:'2027-02-08'}]},
+{i:267,t:'P',n:'K.Masudha Beham,No.66A1A, 2nd Street, Alagappa Nagar',l:1,s:[{b:'A',r:'440/2023-24',e:'2027-02-08'}]},
+{i:268,t:'P',n:'Dr.Pravinkumar,No.270/13, 4th Cross, Periyar Nagar',l:1,s:[{b:'A',r:'439/2023-24',e:'2027-02-08'}]},
+{i:269,t:'P',n:'S.G. AJITHKUMAR,No.Plot No: 4, 13 AT Sivaraman Nagar,Kondur Village, Cuddalore Dist',l:1,s:[{b:'A',r:'438/2023-24',e:'2027-02-14'}]},
+{i:270,t:'P',n:'Dr. R. Krishnamurthi,19, R.S. No.481/1, T.S. No. 1, Ward-A, BlockNo. 16, Trichy Trunk Road',l:1,s:[{b:'A',r:'441/2023-24',e:'2027-02-22'}]},
+{i:271,t:'P',n:'Mr.Manoj, J.Pattel,No.Ward No.5, Block No.46, T.S.No.1780/2B, Thiruppapuliyur Village, Cuddalore - 607002',l:1,s:[{b:'A',r:'442/2023-24',e:'2027-02-26'}]},
+{i:272,t:'G',n:'District Collector,S.F.No.116/2, 158/3,163,164/2,3,1c,165/3E2,166/1J10B,Mannampandal,Mayiladuthurai-609001',l:4,s:[{b:'A',r:'443/2023-24',e:'2027-02-28'},{b:'B',r:'444/2023-24',e:'2027-02-28'},{b:'C',r:'445/2023-24',e:'2027-02-28'},{b:'D',r:'446/2023-24',e:'2027-02-28'}]},
+{i:273,t:'P',n:'SELVAPRABHA92,94,96 BHARATHA MATHA NAGAR PATTANUR VANUR TK VILLUPURAM DIST',l:1,s:[{b:'A',r:'456/2024-25',e:'2027-03-04'}]},
+{i:274,t:'P',n:'VAMSHA RETAIL VENTURES PRIVATE LIMITED,BLOCK NO .10&amp;amp;21 ,MAHATMA GANDHI ROAD,MAYILADUTHURAI',l:2,s:[{b:'A',r:'447/2023-24',e:'2027-03-07'},{b:'B',r:'448/2023-24',e:'2027-03-07'}]},
+{i:275,t:'G',n:'Principal District Judge,Combined Court Building, Villupuram.,',l:1,s:[{b:'A',r:'280/2020-2021',e:'2027-03-09'}]},
+{i:276,t:'P',n:'ABDUL HAJA,NO.277/18B2A,277/18B2A1, VILANGARA STREET, SENTHURAI ROAD, RAILWAY STATION ROAD',l:1,s:[{b:'A',r:'CUD449/L/F/2023-24',e:'2027-03-13'}]},
+{i:277,t:'P',n:'Dhanalakshmi Srinivasan Institute of Medical Sciences and Hospital,Aranarai(South) Village,Thuraiyur Road, ,Alambadi Panchayath',l:4,s:[{b:'A',r:'CUD450/L/F/2023-24',e:'2027-03-18'},{b:'B',r:'CUD451/L/F/2023-24',e:'2027-03-18'},{b:'C',r:'CUD452/L/F/2023-24',e:'2027-03-18'},{b:'D',r:'CUD453/L/F/2023-24',e:'2027-03-18'}]},
+{i:278,t:'P',n:'Sri Kannika Parameswari Store,No.91, Kamarajar Street, villupuram',l:1,s:[{b:'A',r:'CUD454/2023-24',e:'2027-03-20'}]},
+{i:279,t:'P',n:'G.Geetha,Plot No.28, Saraswathi Nagar, Thirupapuliyur, Cuddalore City Municipal Corporation, Cuddalore - 607002',l:1,s:[{b:'A',r:'CUD455/L/F/2023-24',e:'2027-03-27'}]},
+{i:280,t:'G',n:'Principal Subordinate Judge,Principal Subordinate Judge Court Building, Mayiladuthurai,',l:1,s:[{b:'A',r:'124/2015-16',e:'2027-03-28'}]}
 ];
 
-// ===== EXCEL YEARFRAC (Basis 0: US 30/360) =====
-function YF(d1,d2){
-  if(d1>d2){var t=d1;d1=d2;d2=t;}
-  var y1=d1.getFullYear(),m1=d1.getMonth()+1,dd1=Math.min(d1.getDate(),30);
-  var y2=d2.getFullYear(),m2=d2.getMonth()+1,dd2=d2.getDate();
-  if(dd1===30&&dd2===31)dd2=30;
-  if(dd1===31)dd1=30;
-  return((y2-y1)*360+(m2-m1)*30+(dd2-dd1))/360;
+/* -------------------------------------------------------------
+   Fee rules (Amendment Act 2025, w.e.f. 03.02.2026)
+   ------------------------------------------------------------- */
+const RENEWAL_FEE_PER_LIFT = 5000;   // Rs.  Private only
+const PENALTY_PER_MONTH    = 500;    // Rs. per lift per month of delay
+const MAX_PENALTY_PER_LIFT = 1500;   // Rs. (3-month cap)
+const APP_WINDOW_MONTHS    = 3;      // Apply by (expiry - 3 months)
+const RENEWAL_YEARS        = 5;      // Validity extension
+
+/* -------------------------------------------------------------
+   Helpers
+   ------------------------------------------------------------- */
+function addMonths(dt, n){
+  const y = dt.getFullYear(), m = dt.getMonth() + n, d = dt.getDate();
+  const nd = new Date(y, m, 1);
+  const last = new Date(nd.getFullYear(), nd.getMonth()+1, 0).getDate();
+  nd.setDate(Math.min(d, last));
+  return nd;
 }
-
-// Round up to next multiple of 3
-function C3(n){return Math.ceil(n/3)*3}
-
-// EDATE equivalent
-function EM(d,n){
-  var r=new Date(d);r.setMonth(r.getMonth()+n);
-  return r;
+function addYears(dt, n){ return addMonths(dt, n*12); }
+function monthsBetween(a, b){
+  // Whole months from a to b, counting any fractional month as one full month
+  if (b <= a) return 0;
+  let m = (b.getFullYear()-a.getFullYear())*12 + (b.getMonth()-a.getMonth());
+  if (b.getDate() > a.getDate()) m++;
+  return Math.max(0, m);
 }
+function F(n){ return "\u20B9" + Number(n).toLocaleString("en-IN"); }
+function FD(d){ return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}); }
 
-// ===== MAIN CALCULATION (matches Excel formula chain exactly) =====
-function calc(expiry_s, calcDate, landing){
-  var E10=new Date(expiry_s); // Date of Expiry
-  var E12=new Date(calcDate);  // Fees Calculation Date
-  var E9=new Date(calcDate);   // Today/Calc date
-  var B10=new Date(2018,9,9);  // 09-Oct-2018 cutoff
-  var A4=new Date(2018,9,10);  // 10-Oct-2018
-  var rate=(landing==="5+")?10000:5000;
+/* -------------------------------------------------------------
+   Core calculator — one lift
+   ------------------------------------------------------------- */
+function calcOne(expiryStr, calcDate, type){
+  const expiry   = new Date(expiryStr);
+  const deadline = addMonths(expiry, -APP_WINDOW_MONTHS);
+  const validTill= addYears(expiry, RENEWAL_YEARS);
 
-  // E11 = Due date (3 months before expiry)
-  var E11=EM(E10,-3);
-
-  // E13: Pre-Oct'18 required?
-  var preReq=(E11<=B10);
-
-  var E17=0,E18=0,E19=0,E20=0,E21=0;
-  var E16,B19_d,A17_d;
-
-  if(preReq){
-    // L11 = DAY(expiry)-Oct-2018
-    var L11=new Date(2018,9,E10.getDate()); // Oct has index 9
-
-    // E16: penalty end date
-    var dayE15=9; // DAY(B10)=9
-    var dayE11=E11.getDate();
-    if(dayE15>=dayE11){
-      E16=EM(L11,1); // next month
-    } else {
-      E16=new Date(L11.getTime()-86400000); // L11 - 1 day
-    }
-
-    // Check if E15>E12 (cutoff > calc date - unlikely but handle)
-    if(B10>E12){E16=new Date(E12)}
-
-    // E17 = months from due to penalty end
-    E17=Math.ceil(YF(E11,E16)*12);
-    if(E17<0)E17=0;
-
-    // E18 = years from expiry to penalty end
-    E18=Math.ceil(YF(E10,E16));
-    if(E18<0)E18=0;
-
-    E19=E18*500;  // Pre renewal
-    E20=E17*50;   // Pre penalty
-    E21=E19+E20;  // Pre subtotal
-
-    // Transition dates
-    // A12 = "DAY(exp)-MONTH(exp)-YEAR(E16)"
-    var yr16=E16.getFullYear();
-    var A13_d=new Date(yr16,E10.getMonth(),E10.getDate());
-    // C3 = A13 <= A4 ? 1 : 0
-    var addYr=(A13_d<=A4)?1:0;
-    // A14 = DATE(YEAR(A13)+addYr, MONTH(A13), DAY(A13)-1)
-    var _ad=A13_d.getDate()-1;var A14_d;if(_ad<=0){A14_d=new Date(A13_d.getFullYear()+addYr,A13_d.getMonth(),1);A14_d.setDate(A14_d.getDate()-1);}else{A14_d=new Date(A13_d.getFullYear()+addYr,A13_d.getMonth(),_ad);}
-    // A17 = A14 + 1 day
-    A17_d=new Date(A14_d.getTime()+86400000);
-    // B19 = E16 + 1
-    B19_d=new Date(E16.getTime()+86400000);
-  } else {
-    E21=0;
-    // Not Required path
-    // A17 = expiry (projected)
-    var A13nr=new Date(E10.getFullYear(),E10.getMonth(),E10.getDate());
-    var addYrNr=(A13nr<=A4)?1:0;
-    var _adn=A13nr.getDate()-1;var A14nr;if(_adn<=0){A14nr=new Date(A13nr.getFullYear()+addYrNr,A13nr.getMonth(),1);A14nr.setDate(A14nr.getDate()-1);}else{A14nr=new Date(A13nr.getFullYear()+addYrNr,A13nr.getMonth(),_adn);}
-    A17_d=new Date(A14nr.getTime()+86400000);
-    // B19 = E11 (due date)
-    B19_d=new Date(E11);
+  if (type === 'G'){
+    return { renewal:0, penalty:0, total:0,
+             deadline, expiry, validTill, exempt:true };
   }
-
-  // ===== Post-Oct'18 Phase =====
-  var B8=new Date(E12); // calc date
-
-  // H8 = ROUNDUP(YEARFRAC(A17, calcDate), 0)
-  var H8=Math.ceil(YF(A17_d,E9));
-  if(H8<0)H8=0;
-
-  // H9: round to next multiple of 3
-  var H9_lookup={1:2,2:1,4:2,5:1,7:2,8:1,10:2,11:1};
-  var H9=(H9_lookup[H8]!==undefined)?parseInt(H9_lookup[H8]):0;
-
-  var H10=H8+H9; // post years (multiple of 3)
-  var H6=preReq?E18:0;
-  var H11=H6+H10; // total validity years
-
-  // E6 = Validity Till
-  var E6;
-  if(preReq){
-    var _d=E10.getDate()-1;if(_d<=0){E6=new Date(E10.getFullYear()+H11,E10.getMonth(),1);E6.setDate(E6.getDate()-1);}else{E6=new Date(E10.getFullYear()+H11,E10.getMonth(),_d);}
-  } else {
-    E6=new Date(E10.getFullYear()+H11,E10.getMonth(),E10.getDate());
-  }
-
-  // E22 = post months (penalty)
-  var E22;
-  if(E12<E11){
-    E22=0;
-  } else {
-    E22=Math.ceil(YF(B19_d,B8)*12);
-  }
-  if(E22<0)E22=0;
-
-  // E23 = post years (renewal)
-  var yfPost=YF(A17_d,E6);
-  var E23=(yfPost>0)?Math.ceil(yfPost):0;
-
-  // E24 = periods
-  var E24=E23/3;
-
-  // E25 = post renewal
-  var E25=E24*rate;
-
-  // E26 = post penalty
-  var E26=E22*500;
-
-  // E27 = post subtotal
-  var E27=E25+E26;
-
-  // E28 = total per lift
-  var E28=E21+E27;
-
+  const months = monthsBetween(deadline, calcDate);
+  const penalty = Math.min(MAX_PENALTY_PER_LIFT, months * PENALTY_PER_MONTH);
   return {
-    preReq:preReq,
-    preRenewal:E19, prePenalty:E20, preSub:E21,
-    preMonths:E17, preYears:E18,
-    postRenewal:E25, postPenalty:E26, postSub:E27,
-    postMonths:E22, postYears:E23, periods:E24,
-    perLift:E28,
-    validTill:E6
+    renewal: RENEWAL_FEE_PER_LIFT,
+    penalty,
+    total: RENEWAL_FEE_PER_LIFT + penalty,
+    deadline, expiry, validTill,
+    monthsLate: months,
+    exempt:false
   };
 }
 
-// ===== FORMAT =====
-function F(n){return"\u20B9"+Math.round(n).toLocaleString("en-IN")}
-function FD(d){return d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
-function toISO(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+/* -------------------------------------------------------------
+   Aggregate — one consumer (may have several lifts / sub-registrations)
+   ------------------------------------------------------------- */
+function calcConsumer(c, calcDate){
+  const perSub = c.s.map(s => Object.assign({}, s, calcOne(s.e, calcDate, c.t)));
+  // If sub-array has fewer entries than c.l (single-expiry, N lifts),
+  // multiply the single result by c.l.
+  let renewal = 0, penalty = 0;
+  if (perSub.length === 1){
+    renewal = perSub[0].renewal * c.l;
+    penalty = perSub[0].penalty * c.l;
+  } else {
+    perSub.forEach(p => { renewal += p.renewal; penalty += p.penalty; });
+  }
+  return {
+    perSub,
+    renewal, penalty,
+    grand: renewal + penalty,
+    validTill: perSub[0].validTill,
+    exempt: c.t === 'G'
+  };
+}
 
-// ===== APP =====
-var app=document.getElementById("app");
-var P=new URLSearchParams(location.search);
-var vid=P.get("id");
+/* =============================================================
+   Rendering
+   ============================================================= */
+const app = document.getElementById("app");
+const P = new URLSearchParams(location.search);
+const vid = P.get("id");
 
-if(vid){
-  var c=null;
-  for(var k=0;k<D.length;k++){if(D[k].i==vid){c=D[k];break;}}
-  if(!c){app.innerHTML='<div class="fv"><p>Consumer not found.</p></div>';}
-  else{
-    var today=new Date();today.setHours(0,0,0,0);
-    var isMulti=c.s.length>1;
+if (vid){
+  const c = D.find(x => x.i == vid);
+  if (!c){
+    app.innerHTML = '<div class="fee-view"><div class="fee-card"><div class="top"><h2>Consumer not found</h2></div></div></div>';
+  } else {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const isMulti = c.s.length > 1;
+    const result = calcConsumer(c, today);
+    const tLabel = c.t === 'G' ? 'GOVT / EXEMPT' : 'PRIVATE';
 
-    var infoHtml='Lifts: '+c.l+'<br>';
-    if(isMulti){
-      for(var j=0;j<c.s.length;j++){
-        var s=c.s[j];
-        infoHtml+=(s.b||'')+': '+s.r+' (Exp: '+s.e+')<br>';
-      }
+    // Header info
+    let infoHtml = `<span class="type-tag type-${c.t}">${tLabel}</span><br>`
+                 + `Total lifts: <b>${c.l}</b>`;
+    if (isMulti){
+      infoHtml += '<br>' + c.s.map(s => (s.b ? s.b+': ' : '')+s.r+' &middot; Expiry '+s.e).join('<br>');
     } else {
-      infoHtml+='Reg: '+c.s[0].r+'<br>Expiry: '+c.s[0].e;
+      infoHtml += `<br>Reg. No: ${c.s[0].r}<br>License Expiry: <b>${c.s[0].e}</b>`;
     }
 
-    app.innerHTML='<div class="fv"><div class="fc">'+
-      '<div class="tp"><h2>'+c.n+'</h2><div class="inf">'+infoHtml+'</div></div>'+
-      '<div class="opts">'+
-        '<label>Calculation Date:</label>'+
-        '<input type="date" id="cd" value="'+toISO(today)+'" onchange="doCalc()">'+
-        '<label>Landings:</label>'+
-        '<select id="lt" onchange="doCalc()">'+
-          '<option value="5">5 Landings (\u20B95,000)</option>'+
-          '<option value="5+">5+ Landings (\u20B910,000)</option>'+
-        '</select>'+
-      '</div>'+
-      '<div id="out"></div>'+
-    '</div></div>';
+    // Dates row (deadline + validity)
+    const p0 = result.perSub[0];
+    const datesHtml = `
+      <div class="dates-row">
+        <div><b>Apply by (deadline)</b>${FD(p0.deadline)}</div>
+        <div><b>Renewed valid till</b>${FD(result.validTill)}</div>
+      </div>`;
 
-    window.doCalc=function(){
-      var cd=document.getElementById("cd").value;
-      var lt=document.getElementById("lt").value;
-      if(!cd)return;
-      var html='';
+    // Body: fee rows (single) or sub-table (multi)
+    let body = '';
+    if (isMulti){
+      body = '<div class="sub-table"><table>'
+           + '<tr><th>Lift</th><th>Reg. No</th><th>Expiry</th><th>Renewal</th><th>Penalty</th><th>Total</th></tr>';
+      result.perSub.forEach(s => {
+        body += `<tr><td>${s.b||'-'}</td><td>${s.r}</td><td>${s.e}</td>`
+              + `<td class=r>${F(s.renewal)}</td><td class=r>${F(s.penalty)}</td>`
+              + `<td class=r>${F(s.total)}</td></tr>`;
+      });
+      body += `<tr style="font-weight:700;border-top:2px solid #1a3a5c">`
+            + `<td colspan=3>Total (${c.l} Lifts)</td>`
+            + `<td class=r>${F(result.renewal)}</td>`
+            + `<td class=r>${F(result.penalty)}</td>`
+            + `<td class=r>${F(result.grand)}</td></tr></table></div>`;
+    } else {
+      const perLift = result.perSub[0];
+      body = `<div class="fee-rows">
+        <div class="fee-row"><span class=lb>Renewal fee per lift</span><span class=vl>${F(perLift.renewal)}</span></div>
+        <div class="fee-row"><span class=lb>Penalty per lift ${perLift.monthsLate?`(${perLift.monthsLate} mo late, capped)`:'(on time)'}</span><span class=vl>${F(perLift.penalty)}</span></div>
+        <div class="fee-row"><span class=lb>Number of lifts</span><span class=vl>&#215; ${c.l}</span></div>
+        <div class="fee-row"><span class=lb>Renewal total</span><span class=vl>${F(result.renewal)}</span></div>
+        <div class="fee-row"><span class=lb>Penalty total</span><span class=vl>${F(result.penalty)}</span></div>
+      </div>`;
+    }
 
-      if(isMulti){
-        html+='<div class="st"><table><tr><th>Lift</th><th>Reg.No</th><th>Renewal</th><th>Penalty</th><th>Total</th></tr>';
-        var gR=0,gP=0,gT=0;
-        for(var j=0;j<c.s.length;j++){
-          var s=c.s[j];
-          var f=calc(s.e,cd,lt);
-          var ren=f.preRenewal+f.postRenewal;
-          var pen=f.prePenalty+f.postPenalty;
-          gR+=ren;gP+=pen;gT+=f.perLift;
-          html+='<tr><td>'+(s.b||'-')+'</td><td style="font-size:0.75rem">'+s.r+'</td><td class="ar">'+F(ren)+'</td><td class="ar">'+F(pen)+'</td><td class="ar">'+F(f.perLift)+'</td></tr>';
-        }
-        html+='<tr style="font-weight:700;border-top:2px solid var(--pri)"><td colspan="2">Grand Total ('+c.l+' Lifts)</td><td class="ar">'+F(gR)+'</td><td class="ar">'+F(gP)+'</td><td class="ar">'+F(gT)+'</td></tr>';
-        html+='</table></div>';
-        html+='<div class="gt"><span>Grand Total</span><span class="am">'+F(gT)+'</span></div>';
-      } else {
-        var f=calc(c.s[0].e,cd,lt);
-        if(f.preReq && f.preSub>0){
-          html+='<div class="sh">Pre-Oct 2018 Fees</div>';
-          html+='<div class="fr">';
-          html+='<div class="r"><span class="lb">Renewal ('+f.preYears+' yrs \u00D7 \u20B9500)</span><span class="vl">'+F(f.preRenewal)+'</span></div>';
-          html+='<div class="r"><span class="lb">Penalty ('+f.preMonths+' months \u00D7 \u20B950)</span><span class="vl">'+F(f.prePenalty)+'</span></div>';
-          html+='<div class="r"><span class="lb"><b>Subtotal</b></span><span class="vl"><b>'+F(f.preSub)+'</b></span></div>';
-          html+='</div>';
-        }
-        html+='<div class="sh">Post-Oct 2018 Fees</div>';
-        html+='<div class="fr">';
-        html+='<div class="r"><span class="lb">Renewal ('+f.periods+' periods \u00D7 '+F(lt==="5+"?10000:5000)+')</span><span class="vl">'+F(f.postRenewal)+'</span></div>';
-        html+='<div class="r"><span class="lb">Penalty ('+f.postMonths+' months \u00D7 \u20B9500)</span><span class="vl">'+F(f.postPenalty)+'</span></div>';
-        html+='<div class="r"><span class="lb"><b>Subtotal</b></span><span class="vl"><b>'+F(f.postSub)+'</b></span></div>';
-        html+='</div>';
-        html+='<div class="fr">';
-        html+='<div class="r"><span class="lb">Total per Lift</span><span class="vl">'+F(f.perLift)+'</span></div>';
-        html+='<div class="r"><span class="lb">Validity Till</span><span class="vl">'+FD(f.validTill)+'</span></div>';
-        html+='</div>';
-        var grand=f.perLift*c.l;
-        html+='<div class="gt"><span>Grand Total ('+c.l+' Lift'+(c.l>1?'s':'')+')</span><span class="am">'+F(grand)+'</span></div>';
-      }
-      html+='<div class="nt">Fees calculated as on '+FD(new Date(cd))+'. Penalty accrues monthly.<br>Change date or landing type above to recalculate.</div>';
-      document.getElementById("out").innerHTML=html;
-    };
-    doCalc();
+    const totalHtml = result.exempt
+      ? `<div class="govt-banner">GOVT lift &mdash; No renewal fee or penalty payable</div>
+         <div class="fee-total govt"><span>Grand Total</span><span class="am">${F(0)}</span></div>`
+      : `<div class="fee-total"><span>Grand Total (${c.l} Lift${c.l>1?'s':''})</span><span class="am">${F(result.grand)}</span></div>`;
+
+    const warn = (c.s.length > 1 && c.s.some(s => s.e !== c.s[0].e))
+      ? '<div class="warn">Note: sub-lifts have different expiry dates &mdash; fees calculated individually.</div>'
+      : '';
+
+    app.innerHTML = `<div class="fee-view"><div class="fee-card">
+      <div class="top"><h2>${c.n}</h2><div class="info">${infoHtml}</div></div>
+      ${datesHtml}
+      ${body}
+      ${totalHtml}
+      ${warn}
+      <div class="fee-note">
+        Fees calculated as on ${FD(today)}.<br>
+        Rules: Renewal &#8377;5,000 per lift (Private) &middot; Late penalty &#8377;500 per lift per month, capped at &#8377;1,500 &middot; Application window: 3 months before expiry &middot; Renewal validity: 5 years &middot; Govt lifts exempt.
+      </div>
+    </div></div>`;
   }
 } else {
-  // ===== LIST VIEW =====
-  var PS=24,pg=0,flt="";
-  function fil(){var f=flt.toLowerCase();return D.filter(function(c){return !f||c.n.toLowerCase().indexOf(f)>=0||c.s.some(function(s){return s.r.toLowerCase().indexOf(f)>=0})||String(c.i).indexOf(f)>=0;});}
-  function ren(){
-    var ls=fil(),pages=Math.ceil(ls.length/PS);
-    if(pg>=pages)pg=Math.max(0,pages-1);
-    var sl=ls.slice(pg*PS,(pg+1)*PS);
-    var td=new Date();td.setHours(0,0,0,0);
-    var gh='';
-    for(var k=0;k<sl.length;k++){
-      var c=sl[k];
-      var gt=0;
-      for(var j=0;j<c.s.length;j++){
-        var f=calc(c.s[j].e,toISO(td),"5");
-        gt+=f.perLift;
-      }
-      if(c.s.length===1)gt=gt*c.l;
-      var regs=c.s.length>1?c.s.map(function(s){return (s.b||'')+'-'+s.r;}).join(', '):c.s[0].r;
-      gh+='<div class="cc" onclick="location.href=\'?id='+c.i+'\'">'+
-        '<h3>'+c.i+'. '+c.n+'</h3>'+
-        '<div class="meta">Reg: '+(regs.length>60?regs.substring(0,57)+'...':regs)+' | Lifts: '+c.l+'</div>'+
-        '<div>As on '+FD(td)+': <span class="total">'+F(gt)+'</span></div>'+
-      '</div>';
-    }
-    document.getElementById("grid").innerHTML=gh;
-    var ph='';for(var i=0;i<pages;i++){ph+='<button class="'+(i===pg?'act':'')+'" onclick="gp('+i+')">'+String(i+1)+'</button>';}
-    document.getElementById("pgr").innerHTML=ph;
+  /* --------------- List view --------------- */
+  const PS = 24; let pg = 0, flt = "", typeFilter = "";
+  function fil(){
+    let f = flt.toLowerCase();
+    return D.filter(c =>
+      (!typeFilter || c.t === typeFilter) &&
+      (!f || c.n.toLowerCase().includes(f) ||
+             c.s.some(s => s.r.toLowerCase().includes(f)) ||
+             String(c.i).includes(f))
+    );
   }
-  window.gp=function(p){pg=p;ren();scrollTo(0,180);};
-  app.innerHTML='<div class="ctrls"><input type="text" id="srch" placeholder="Search name, reg no, or serial..."><button onclick="window.print()">Print</button></div><div class="pgr" id="pgr"></div><div class="grid" id="grid"></div>';
-  document.getElementById("srch").addEventListener("input",function(e){flt=e.target.value;pg=0;ren();});
+  function ren(){
+    let ls = fil(), pages = Math.ceil(ls.length/PS) || 1;
+    if (pg >= pages) pg = Math.max(0, pages-1);
+    let sl = ls.slice(pg*PS, (pg+1)*PS);
+    let td = new Date(); td.setHours(0,0,0,0);
+    let gh = '';
+    sl.forEach(c => {
+      const r = calcConsumer(c, td);
+      const regs = c.s.length>1 ? c.s.map(s => (s.b||'')+'-'+s.r).join(', ') : c.s[0].r;
+      gh += `<div class="c-card ${c.t==='G'?'g':''}" onclick="location.href='?id=${c.i}'">
+        <span class="tag ${c.t}">${c.t==='G'?'GOVT':'PVT'}</span>
+        <h3>${c.i}. ${c.n}</h3>
+        <div class="meta">Reg: ${regs.substring(0,55)}${regs.length>55?'...':''} &middot; Lifts: ${c.l}</div>
+        <div>As on ${FD(td)}: <span class="total">${F(r.grand)}</span></div>
+      </div>`;
+    });
+    document.getElementById("grid").innerHTML = gh || '<p style="text-align:center;color:#888;grid-column:1/-1">No matches.</p>';
+    let ph = '';
+    for (let i=0; i<pages; i++) ph += `<button class="${i===pg?'act':''}" onclick="gp(${i})">${i+1}</button>`;
+    document.getElementById("pgr").innerHTML = ph;
+    document.getElementById("cnt").textContent = `${ls.length} of ${D.length}`;
+  }
+  window.gp = function(p){ pg = p; ren(); scrollTo(0,180); };
+  app.innerHTML = `
+    <div class="ctrls">
+      <input type="text" id="srch" placeholder="Search name, reg no, or serial...">
+      <select id="tfilt">
+        <option value="">All types</option>
+        <option value="P">Private only</option>
+        <option value="G">Govt only</option>
+      </select>
+      <button onclick="window.print()">Print</button>
+      <span id="cnt" style="align-self:center;color:#666;font-size:0.82rem;padding:0 4px"></span>
+    </div>
+    <div class="pager" id="pgr"></div>
+    <div class="grid" id="grid"></div>`;
+  document.getElementById("srch").addEventListener("input", e => { flt = e.target.value; pg = 0; ren(); });
+  document.getElementById("tfilt").addEventListener("change", e => { typeFilter = e.target.value; pg = 0; ren(); });
   ren();
 }
 </script>
